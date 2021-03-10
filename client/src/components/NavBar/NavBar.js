@@ -1,24 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { NavBarContainer, Logo, MenuContainer, MenuItem, MenuLink } from './NavBarElements';
-import { Link } from 'react-router-dom';
 
 const NavBar = () => {
+
+
     return (
         <NavBarContainer>
-            <Logo>Logo</Logo>
+            <Logo
+            to="home"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact={true}>
+            Home Page
+            </Logo>
             <MenuContainer>
                 <MenuItem>
-                    <MenuLink to='/todo'>To Do</MenuLink>
+                    <MenuLink to="todo"
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact={true}
+                    >To Do</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="/recipes">Recipes</MenuLink>
+                    <MenuLink to="recipes">Recipes</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="/inventory">Inventory</MenuLink>
+                    <MenuLink to="inventory">Inventory</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="/flowercheck">FlowerCheck</MenuLink>
+                    <MenuLink to="flowercheck">Flower Health</MenuLink>
                 </MenuItem>
             </MenuContainer>
             

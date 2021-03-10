@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import HeroSection from '../components/HeroSection/HeroSection';
+import NavBar from '../components/NavBar/NavBar';
+import ToDoSection from '../components/ToDoSection/ToDoSection'
 
 const HomePage = () => {
     return (
         <>
-            return <h1>Hej</h1>
+        <NavBar/>
+        <HeroSection/>
+        <ToDoSection />
         </>
     )
 }
