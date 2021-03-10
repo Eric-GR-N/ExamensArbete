@@ -19,7 +19,7 @@ z-index: 100;
 `
 
 export const Logo = styled(Link)`
-color: white;
+color: black;
 font-size: 1.3rem;
 position: absolute;
 left: 2%;
@@ -42,7 +42,7 @@ export const MenuItem = styled.li`
 export const MenuLink = styled(Link)`
 align-items: center;
 height: 100%;
-color: white;
+color: black;
 display: flex;
 font-size: 1rem;
 font-family: 'Montserrat', sans-serif;
@@ -51,7 +51,7 @@ text-transform: uppercase;
 cursor: pointer;
 margin: 0 40px;
 padding: 0 20px;
-border-bottom: solid 2px white;
+border-bottom: solid 2px black;
 transition: 0.4s linear;
 
 &:hover{

@@ -20,12 +20,31 @@ position: relative;
     height: 100vh;
 } 
 `
-
-export const ToDoBackgroundVideo = styled.video`
-height: 100%;
-object-fit: cover;
+export const InputWrapper = styled.div`
+height: 200px;
 width: 100%;
+${'' /* border: solid 2px green; */}
 position: absolute;
-z-index: -2;
+top: 80px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+`
+
+export const StyledHeader = styled.h1`
+position: absolute;
+`
+
+export const StyledInput = styled.input`
+background: transparent;
+border: none;
+font-size: 2rem;
+border-bottom: solid 1px black;
+outline: none;
+width: 400px;
+position: absolute;
+bottom: 20px;
+
 `
 

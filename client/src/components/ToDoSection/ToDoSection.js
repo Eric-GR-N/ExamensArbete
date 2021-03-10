@@ -1,12 +1,18 @@
 import React from 'react'
-import {ToDoOverlay, ToDoContainer, ToDoBackgroundVideo, ToDoOverLay} from './ToDoElements';
-import Snow from '../../resources/Snow.mp4';
+import {ToDoOverlay, ToDoContainer, ToDoOverLay, InputWrapper, StyledInput, StyledHeader} from './ToDoElements';
+import styled from 'styled-components';
+
 
 const ToDoSection = () => {
     return (
         <ToDoContainer id="todo">
         <ToDoOverLay/>
-        <ToDoBackgroundVideo src={Snow} autoPlay muted/>
+        <InputWrapper>
+        <StyledHeader>
+        Something you want done? Write it!
+        </StyledHeader>
+        <StyledInput/>
+        </InputWrapper>
         </ToDoContainer>
     )
 }
