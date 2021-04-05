@@ -6,7 +6,7 @@ export const ToDoOverLay = styled.div`
 width: 100%;
 height: 100%;
 position: absolute;
-background-color: rgba(0,0,0,0.3);
+background-color: rgba(0,0,0,0);
 `;
 
 export const ToDoContainer = styled.div`
@@ -58,7 +58,7 @@ width: 50%;
 display: flex;
 justify-content: center;
 position: relative;
-align-content: center;
+align-content: flex-start;
 flex-wrap: wrap;
 overflow: auto;
 ` 
@@ -76,6 +76,7 @@ align-items: center;
 justify-content: center;
 text-align: center;
 `
+
 
 export const SubmitButton = styled.button`
 margin: 30px;
