@@ -8,14 +8,16 @@ const ToDoSection = () => {
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
 
+
     useEffect(()=>{
-    Axios.get("http://localhost:4000/todo").then((response)=>{
+    console.log('I RAN');
+    getData();
+    },[])
+
+    const getData = ()=>{
+        Axios.get("http://localhost:4000/todo").then((response)=>{
         setTaskList(response.data)
     })
-    }, [taskList])
-
-    const displayTasks = ()=>{
-
     }
 
     const handleInput = (e)=>{
@@ -27,6 +29,7 @@ const ToDoSection = () => {
         Axios.post("http://localhost:4000/tasks", {
             task: task
         })
+        getData();
     }
 
     return (
