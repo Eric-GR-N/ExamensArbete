@@ -25,7 +25,13 @@ const NavBar = () => {
                     >To Do</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="recipes">Recipes</MenuLink>
+                    <MenuLink 
+                    to="safetysection"
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact={true}
+                    >Safety</MenuLink>
                 </MenuItem>
                 <MenuItem>
                     <MenuLink to="inventory">Inventory</MenuLink>
