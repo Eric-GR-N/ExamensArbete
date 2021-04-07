@@ -46,10 +46,11 @@ background: transparent;
 text-align: center;
 border: none;
 font-size: 1.5rem;
-border-bottom: solid 1px white;
+border-bottom: solid 3px white;
 outline: none;
 width: 400px;
 color: white;
+display: inline;
 `
 export const ToDoNotesWrapper = styled.div`
 ${'' /* border: solid yellow 3px; */}
@@ -68,13 +69,14 @@ width: 100px;
 height: 150px;
 border-radius: 10px;
 background: white;
-box-shadow: 3px 1px 8px -2px #9F9C9B;
+box-shadow: 5px 3px 10px -4px #9F9C9B;
 position: relative;
 margin: 15px;
 display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
+overflow: hidden;
 `
 
 
@@ -82,9 +84,43 @@ export const SubmitButton = styled.button`
 margin: 30px;
 padding: 10px 40px;
 border-radius: 5px;
-background-color: green;
+background-color: black;
 border: none;
 color: white;
 outline: none;
 cursor: pointer;
+`
+
+export const StyledParaGraph = styled.p`
+max-width: 90%;
+word-wrap: break-word;
+`
+
+export const StyledSpan = styled.span`
+position: absolute;
+width: 100%;
+height: 15%;
+background-color: pink;
+align-self: flex-end;
+`
+
+export const StyledSelect = styled.select`
+width: 250px;
+height: 30px;
+border: none;
+text-align-last: center;
+border-radius: 5px;
+
+&::-ms-expand {
+    display: none;
+}
+`
+export const StyledOption = styled.option`
+
+`
+export const StyledLabel = styled.label`
+margin: 15px;
+color: black;
+font-weight: bold;
+font-size: 1.2rem;
 `
