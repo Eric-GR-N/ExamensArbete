@@ -96,6 +96,10 @@ export const StyledParaGraph = styled.p`
 max-width: 90%;
 word-wrap: break-word;
 cursor: pointer;
+
+&:hover{
+    opacity: 0.4;
+}
 `
 
 

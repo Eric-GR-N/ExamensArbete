@@ -6,27 +6,39 @@ StyledParaGraph, StyledSpan, StyledSelect, StyledOption,
 StyledListInput, StyledLabel, StyledHoverText} from './ToDoElements';
 import styled from 'styled-components';
 import Axios from "axios";
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:4000/');
 
 const ToDoSection = () => {
 
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
+    const [switcher, setSwitcher] = useState();
 
 
     useEffect(()=>{
     console.log('I RAN');
     getData();
-    },[])
+    },[switcher])
 
     const getData = ()=>{
         console.log('GOT DATA')
         Axios.get("http://localhost:4000/todo").then((response)=>{
+            console.log(response.data)
         setTaskList(response.data)
     })
     }
 
+    const deleteData = (task)=>{
+        socket.emit('task', task)
+        const switchValue = switcher ? false : true;
+        setSwitcher(switchValue);
+        console.log(switcher)
+    }
+
     const handleNoteClick = (e)=>{
-        console.log(e.target.textContent);
+        deleteData(e.target.textContent);
     }
 
     const handleInput = (e)=>{
@@ -68,8 +80,8 @@ const ToDoSection = () => {
         </InputWrapper>
         <ToDoNotesWrapper>
         {taskList.map((val, index)=>{
-           return <StyledNote onClick={handleNoteClick} key={index}>
-           <StyledParaGraph>{val.task}</StyledParaGraph>
+           return <StyledNote key={index}>
+           <StyledParaGraph onClick={handleNoteClick}>{val.task}</StyledParaGraph>
            <StyledSpan>
            <StyledHoverText>Done? Click!</StyledHoverText>
            </StyledSpan>
