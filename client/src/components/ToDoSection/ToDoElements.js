@@ -64,6 +64,57 @@ flex-wrap: wrap;
 overflow: auto;
 ` 
 
+export const SubmitButton = styled.button`
+margin: 30px;
+padding: 10px 40px;
+border-radius: 5px;
+background-color: black;
+border: none;
+color: white;
+outline: none;
+cursor: pointer;
+`
+export const StyledHoverText = styled.p`
+display: none;
+font-size: 0.7rem;
+color: white;
+`
+
+export const StyledSpan = styled.span`
+display: flex;
+position: absolute;
+width: 100%;
+height: 15%;
+font-size: 0.5rem;
+background-color: pink;
+align-self: flex-end;
+align-items: center;
+justify-content: center;
+`
+
+export const StyledParaGraph = styled.p`
+max-width: 90%;
+word-wrap: break-word;
+cursor: pointer;
+`
+
+
+export const StyledSelect = styled.select`
+width: 250px;
+height: 30px;
+border: none;
+text-align-last: center;
+border-radius: 5px;
+`
+export const StyledOption = styled.option`
+
+`
+export const StyledLabel = styled.label`
+margin: 15px;
+color: black;
+font-weight: bold;
+font-size: 1.2rem;
+`
 export const StyledNote = styled.div`
 width: 100px;
 height: 150px;
@@ -77,50 +128,13 @@ align-items: center;
 justify-content: center;
 text-align: center;
 overflow: hidden;
-`
 
-
-export const SubmitButton = styled.button`
-margin: 30px;
-padding: 10px 40px;
-border-radius: 5px;
-background-color: black;
-border: none;
-color: white;
-outline: none;
-cursor: pointer;
-`
-
-export const StyledParaGraph = styled.p`
-max-width: 90%;
-word-wrap: break-word;
-`
-
-export const StyledSpan = styled.span`
-position: absolute;
-width: 100%;
-height: 15%;
-background-color: pink;
-align-self: flex-end;
-`
-
-export const StyledSelect = styled.select`
-width: 250px;
-height: 30px;
-border: none;
-text-align-last: center;
-border-radius: 5px;
-
-&::-ms-expand {
-    display: none;
-}
-`
-export const StyledOption = styled.option`
-
-`
-export const StyledLabel = styled.label`
-margin: 15px;
-color: black;
-font-weight: bold;
-font-size: 1.2rem;
+${StyledParaGraph}:hover ~ ${StyledSpan}{
+    transition: 0.1s;
+    background-color: lightblue;
+        > ${StyledHoverText} {
+        transition: 1s;
+        display: block;
+    }
+} 
 `

@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {ToDoContainer, ToDoOverLay, ToDoNotesWrapper, InputWrapper, StyledInput, StyledHeader, StyledNote, SubmitButton, StyledParaGraph, StyledSpan, StyledSelect, StyledOption, StyledListInput, StyledLabel} from './ToDoElements';
+import {
+ToDoContainer, ToDoOverLay, ToDoNotesWrapper, InputWrapper, 
+StyledInput, StyledHeader, StyledNote, SubmitButton, 
+StyledParaGraph, StyledSpan, StyledSelect, StyledOption, 
+StyledListInput, StyledLabel, StyledHoverText} from './ToDoElements';
 import styled from 'styled-components';
 import Axios from "axios";
 
@@ -19,6 +23,10 @@ const ToDoSection = () => {
         Axios.get("http://localhost:4000/todo").then((response)=>{
         setTaskList(response.data)
     })
+    }
+
+    const handleNoteClick = (e)=>{
+        console.log(e.target.textContent);
     }
 
     const handleInput = (e)=>{
@@ -60,7 +68,12 @@ const ToDoSection = () => {
         </InputWrapper>
         <ToDoNotesWrapper>
         {taskList.map((val, index)=>{
-           return <StyledNote key={index}><StyledParaGraph>{val.task}</StyledParaGraph><StyledSpan/></StyledNote>
+           return <StyledNote onClick={handleNoteClick} key={index}>
+           <StyledParaGraph>{val.task}</StyledParaGraph>
+           <StyledSpan>
+           <StyledHoverText>Done? Click!</StyledHoverText>
+           </StyledSpan>
+           </StyledNote>
         })}
         </ToDoNotesWrapper>
         </ToDoContainer>
