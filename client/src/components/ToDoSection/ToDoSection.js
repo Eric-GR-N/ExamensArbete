@@ -3,38 +3,36 @@ import {
 ToDoContainer, ToDoOverLay, ToDoNotesWrapper, InputWrapper, 
 StyledInput, StyledHeader, StyledNote, SubmitButton, 
 StyledParaGraph, StyledSpan, StyledSelect, StyledOption, 
-StyledListInput, StyledLabel, StyledHoverText} from './ToDoElements';
-import styled from 'styled-components';
+StyledLabel, StyledHoverText} from './ToDoElements';
 import Axios from "axios";
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:4000/');
 
 const ToDoSection = () => {
 
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
-    const [switcher, setSwitcher] = useState();
-
 
     useEffect(()=>{
-    console.log('I RAN');
-    getData();
-    },[switcher])
+        renderData()
+        console.log('I RAN')
+    }, [taskList])
 
-    const getData = ()=>{
-        console.log('GOT DATA')
-        Axios.get("http://localhost:4000/todo").then((response)=>{
-            console.log(response.data)
-        setTaskList(response.data)
-    })
+    useEffect(()=>{
+       setData();
+    }, [])
+
+    const setData = async () =>{
+        const resp = await Axios.get("http://localhost:4000/todo")
+        const newTaskList = resp.data.filter(obj=>{
+            return obj.status !== 'DONE';
+        });
+        setTaskList(newTaskList);
     }
 
     const deleteData = (task)=>{
-        socket.emit('task', task)
-        const switchValue = switcher ? false : true;
-        setSwitcher(switchValue);
-        console.log(switcher)
+        Axios.put("http://localhost:4000/update", { task: task}).then((response)=>{
+            setData();
+        })
+        
     }
 
     const handleNoteClick = (e)=>{
@@ -42,15 +40,28 @@ const ToDoSection = () => {
     }
 
     const handleInput = (e)=>{
-    const newTask = e.target.value;
-    setTask(newTask);
+        const newTask = e.target.value;
+        setTask(newTask);
     }
 
     const handleSubmit = ()=>{
         Axios.post("http://localhost:4000/tasks", {
             task: task
+        }).then((response)=>{
+            setData();
         })
-        getData();
+    }
+
+    const renderData = ()=>{
+        // setData();
+        return taskList.map((val, index)=>{
+            return <StyledNote key={index}>
+            <StyledParaGraph onClick={e =>handleNoteClick(e)}>{val.task}</StyledParaGraph>
+            <StyledSpan>
+            <StyledHoverText>Done? Click!</StyledHoverText>
+            </StyledSpan>
+            </StyledNote>
+         })
     }
 
     return (
@@ -79,14 +90,7 @@ const ToDoSection = () => {
         </SubmitButton>
         </InputWrapper>
         <ToDoNotesWrapper>
-        {taskList.map((val, index)=>{
-           return <StyledNote key={index}>
-           <StyledParaGraph onClick={handleNoteClick}>{val.task}</StyledParaGraph>
-           <StyledSpan>
-           <StyledHoverText>Done? Click!</StyledHoverText>
-           </StyledSpan>
-           </StyledNote>
-        })}
+        {renderData()}
         </ToDoNotesWrapper>
         </ToDoContainer>
     )
