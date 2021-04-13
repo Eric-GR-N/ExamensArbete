@@ -37,7 +37,8 @@ align-items: center;
 `
 
 export const StyledHeader = styled.h1`
-color: white;
+color: black;
+text-shadow: 0.5px 0.5px white;
 `
 
 export const StyledInput = styled.input`
@@ -49,7 +50,7 @@ font-size: 1.5rem;
 border-bottom: solid 3px white;
 outline: none;
 width: 400px;
-color: white;
+color: black;
 display: inline;
 `
 export const ToDoNotesWrapper = styled.div`

@@ -10,6 +10,7 @@ const ToDoSection = () => {
 
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
+    const [deadline, setDeadline] = useState('1 day');
 
     useEffect(()=>{
         renderData()
@@ -32,7 +33,6 @@ const ToDoSection = () => {
         Axios.put("http://localhost:4000/update", { task: task}).then((response)=>{
             setData();
         })
-        
     }
 
     const handleNoteClick = (e)=>{
@@ -44,16 +44,22 @@ const ToDoSection = () => {
         setTask(newTask);
     }
 
+    const handleSelect = (e)=>{
+        const newDeadline = e.target.value;
+        setDeadline(newDeadline);
+    }
+
     const handleSubmit = ()=>{
+        console.log(deadline);
         Axios.post("http://localhost:4000/tasks", {
-            task: task
+            task: task,
+            deadline: deadline
         }).then((response)=>{
             setData();
         })
     }
 
     const renderData = ()=>{
-        // setData();
         return taskList.map((val, index)=>{
             return <StyledNote key={index}>
             <StyledParaGraph onClick={e =>handleNoteClick(e)}>{val.task}</StyledParaGraph>
@@ -73,17 +79,17 @@ const ToDoSection = () => {
         </StyledHeader>
         <StyledInput onChange={e => handleInput(e)}/>
         <StyledLabel for="dropdown">Deadline?</StyledLabel>
-        <StyledSelect id="downtime">
-            <StyledOption value="1">1 Day</StyledOption>
-            <StyledOption value="2">2 Days</StyledOption>
-            <StyledOption value="3">3 Days</StyledOption>
-            <StyledOption value="4">4 Days</StyledOption>
-            <StyledOption value="5">5 Days</StyledOption>
-            <StyledOption value="6">6 Days</StyledOption>
-            <StyledOption value="week">1 Week</StyledOption>
-            <StyledOption value="2weeks">2 Weeks</StyledOption>
-            <StyledOption value="3weeks">3 Weeks</StyledOption>
-            <StyledOption value="month">1 Month</StyledOption>
+        <StyledSelect id="downtime" onChange={e=>{handleSelect(e)}}>
+            <StyledOption value="1 day">1 Day</StyledOption>
+            <StyledOption value="2 days">2 Days</StyledOption>
+            <StyledOption value="3 days">3 Days</StyledOption>
+            <StyledOption value="4 days">4 Days</StyledOption>
+            <StyledOption value="5 days">5 Days</StyledOption>
+            <StyledOption value="6 days">6 Days</StyledOption>
+            <StyledOption value="1 week">1 Week</StyledOption>
+            <StyledOption value="2 weeks">2 Weeks</StyledOption>
+            <StyledOption value="3 weeks">3 Weeks</StyledOption>
+            <StyledOption value="1 month">1 Month</StyledOption>
         </StyledSelect>
         <SubmitButton onClick={handleSubmit}>
             Add Task

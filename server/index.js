@@ -21,13 +21,13 @@ const db = mysql.createConnection({
 
 
   app.post("/tasks", (req, res) =>{
-
     const task = req.body.task;
-    const sqlInsertTask = 'INSERT INTO todo (task) VALUES (?)';
+    const deadline = req.body.deadline;
+    const sqlInsertTask = 'INSERT INTO todo (task, deadline) VALUES (?, ?)';
 
     db.query(
         sqlInsertTask,
-        [task],
+        [task,deadline],
         (err, result) => {
           if (err) {
             console.log(err);
