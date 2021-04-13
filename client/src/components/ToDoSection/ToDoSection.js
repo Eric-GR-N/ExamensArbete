@@ -11,6 +11,8 @@ const ToDoSection = () => {
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
     const [deadline, setDeadline] = useState('1 day');
+    const [downtime, addToDownTime] = useState([]);
+
 
     useEffect(()=>{
         renderData()
@@ -26,11 +28,20 @@ const ToDoSection = () => {
         const newTaskList = resp.data.filter(obj=>{
             return obj.status !== 'DONE';
         });
+
+        newTaskList.map(obj=>{
+            if(obj.deadline === 'Passed' && obj.reminder !== 'Sent'){
+                    Axios.put("http://localhost:4000/updatereminder", { task: task, reminder: 'Sent'}).then((response)=>{
+                        window.alert(`TASK: ${obj.task} is still not finished!`);
+                    })
+            }
+        })
+
         setTaskList(newTaskList);
     }
 
     const deleteData = (task)=>{
-        Axios.put("http://localhost:4000/update", { task: task}).then((response)=>{
+        Axios.put("http://localhost:4000/updatestatus", { task: task}).then((response)=>{
             setData();
         })
     }
@@ -50,13 +61,47 @@ const ToDoSection = () => {
     }
 
     const handleSubmit = ()=>{
-        console.log(deadline);
+        setDownTimeHours(deadline);
         Axios.post("http://localhost:4000/tasks", {
             task: task,
             deadline: deadline
         }).then((response)=>{
             setData();
         })
+    }
+
+    const handleMissedDeadline = (endtime)=>{
+       const deadlineItem =  setTimeout(()=>{
+            Axios.put("http://localhost:4000/updatedeadline", { deadline: 'Passed', task: task, }).then((response)=>{
+                setData();
+            })
+        }, (endtime))
+
+        addToDownTime([...downtime, deadlineItem]);
+    }
+
+    const setDownTimeHours = (deadline)=>{
+
+        switch(deadline){
+            case '1 day':
+                handleMissedDeadline(10000);
+                break;
+            case '2 days':
+                handleMissedDeadline(60000);
+                break;
+            case '3 days':
+                
+                break;
+            case '4 days':
+                
+                break;
+            case '5 days':
+                
+                break;
+            case '6 days':
+                
+                break;
+        }
     }
 
     const renderData = ()=>{

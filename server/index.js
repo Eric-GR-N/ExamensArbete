@@ -39,7 +39,7 @@ const db = mysql.createConnection({
   })
 
   app.get("/todo", (req, res) => {
-    db.query("SELECT task, status FROM todo", (err, result) => {
+    db.query("SELECT task, status, deadline, reminder FROM todo", (err, result) => {
       if (err) {
         console.log(err);
       } else {
@@ -48,13 +48,48 @@ const db = mysql.createConnection({
     });
   });
 
-  app.put("/update", (req, res) => {
+  app.put("/updatestatus", (req, res) => {
     const task = req.body.task;
     const status = 'DONE';
 
     db.query(
       "UPDATE todo SET status = ? WHERE task = ?",
       [status, task],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  });
+
+  app.put("/updatedeadline", (req, res) => {
+    const task = req.body.task;
+    const deadline = req.body.deadline;
+
+
+    db.query(
+      "UPDATE todo SET deadline = ? WHERE task = ?",
+      [deadline, task],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  });
+
+  app.put("/updatereminder", (req, res) => {
+    const task = req.body.task;
+    const reminder = req.body.reminder;
+
+    db.query(
+      "UPDATE todo SET reminder = ? WHERE task = ?",
+      [reminder, task],
       (err, result) => {
         if (err) {
           console.log(err);
