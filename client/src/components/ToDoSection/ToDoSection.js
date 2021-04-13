@@ -76,30 +76,42 @@ const ToDoSection = () => {
                 setData();
             })
         }, (endtime))
-
         addToDownTime([...downtime, deadlineItem]);
     }
 
     const setDownTimeHours = (deadline)=>{
+        const dayInMilliseconds = (3600000*24);
 
         switch(deadline){
             case '1 day':
-                handleMissedDeadline(10000);
+                handleMissedDeadline(dayInMilliseconds);
                 break;
             case '2 days':
-                handleMissedDeadline(60000);
+                handleMissedDeadline(dayInMilliseconds*2);
                 break;
             case '3 days':
-                
+                handleMissedDeadline(dayInMilliseconds*3);
                 break;
             case '4 days':
-                
+                handleMissedDeadline(dayInMilliseconds*4);
                 break;
             case '5 days':
-                
+                handleMissedDeadline(dayInMilliseconds*5);
                 break;
             case '6 days':
-                
+                handleMissedDeadline(dayInMilliseconds*6);
+                break;
+            case '1 week':
+                handleMissedDeadline(dayInMilliseconds*7);
+                break;
+            case '2 weeks':
+                handleMissedDeadline(dayInMilliseconds*14);
+                break;
+            case '3 weeks':
+                handleMissedDeadline(dayInMilliseconds*21);
+                break;
+            case '1 month':
+                handleMissedDeadline(dayInMilliseconds*30);
                 break;
         }
     }
