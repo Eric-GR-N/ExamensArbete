@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {Link} from 'react-scroll';
 
 
+
 export const NavBarContainer = styled.div`
 height: 80px;
 width: 100%;
@@ -10,9 +11,7 @@ position: fixed;
 display: flex;
 justify-content: center;
 align-items: center;
-${'' /* border: solid 2px black; */}
 z-index: 100;
-
 ${'' /* @media only screen and (max-width: 830px) {
     height: 100vh;
 }  */}
@@ -20,7 +19,7 @@ ${'' /* @media only screen and (max-width: 830px) {
 
 export const Logo = styled(Link)`
 color: white;
-font-size: 1.3rem;
+font-size: 1rem;
 position: absolute;
 left: 2%;
 z-index: 11;
@@ -33,7 +32,9 @@ cursor: pointer;
 
 export const MenuContainer = styled.ul`
 display: flex;
+justify-content: center;
 list-style: none;
+width: 700px;
 
 @media only screen and (max-width: 830px) {
     display: none;
@@ -46,14 +47,14 @@ export const MenuLink = styled(Link)`
 align-items: center;
 height: 100%;
 color: white;
-font-size: 1rem;
+font-size: 0.9rem;
 font-family: 'Montserrat', sans-serif;
 text-decoration: none;
 text-transform: uppercase;
 cursor: pointer;
 margin: 0 40px;
 padding: 0 20px;
-border-bottom: solid 2px white;
+border-bottom: solid 1.5px white;
 transition: 0.4s linear;
 
 &:hover{

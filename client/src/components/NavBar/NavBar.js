@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import { NavBarContainer, Logo, MenuContainer, MenuItem, MenuLink } from './NavBarElements';
+import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink } from './NavBarElements';
 
 const NavBar = () => {
 
@@ -26,18 +26,15 @@ const NavBar = () => {
                 </MenuItem>
                 <MenuItem>
                     <MenuLink 
-                    to="safetysection"
+                    to="inventory"
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact={true}
-                    >Safety</MenuLink>
+                    >Inventory</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="inventory">Inventory</MenuLink>
-                </MenuItem>
-                <MenuItem>
-                    <MenuLink to="flowercheck">Flower Health</MenuLink>
+                    <MenuLink to="">IoT</MenuLink>
                 </MenuItem>
             </MenuContainer>
             

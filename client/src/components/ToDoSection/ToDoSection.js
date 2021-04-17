@@ -5,6 +5,7 @@ StyledInput, StyledHeader, StyledNote, SubmitButton,
 StyledParaGraph, StyledSpan, StyledSelect, StyledOption, 
 StyledLabel, StyledHoverText} from './ToDoElements';
 import Axios from "axios";
+import emailjs from 'emailjs-com';
 
 const ToDoSection = () => {
 
@@ -12,6 +13,7 @@ const ToDoSection = () => {
     const [task, setTask] = useState();
     const [deadline, setDeadline] = useState('1 day');
     const [downtime, addToDownTime] = useState([]);
+    const [color, setColor] = useState('#ff5252');
 
 
     useEffect(()=>{
@@ -23,6 +25,20 @@ const ToDoSection = () => {
        setData();
     }, [])
 
+    const sendReminder = () => {
+
+        var templateParams = {
+            task: task
+        };
+
+        emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
+          .then((result) => {
+              console.log(result.task);
+          }, (error) => {
+              console.log(error.text);
+          });
+      }
+
     const setData = async () =>{
         const resp = await Axios.get("http://localhost:4000/todo")
         const newTaskList = resp.data.filter(obj=>{
@@ -31,8 +47,9 @@ const ToDoSection = () => {
 
         newTaskList.map(obj=>{
             if(obj.deadline === 'Passed' && obj.reminder !== 'Sent'){
+                    sendReminder();
                     Axios.put("http://localhost:4000/updatereminder", { task: task, reminder: 'Sent'}).then((response)=>{
-                        window.alert(`TASK: ${obj.task} is still not finished!`);
+                    
                     })
             }
         })
@@ -135,7 +152,7 @@ const ToDoSection = () => {
         Something you want done? Write it!
         </StyledHeader>
         <StyledInput onChange={e => handleInput(e)}/>
-        <StyledLabel for="dropdown">Deadline?</StyledLabel>
+        <StyledLabel for="dropdown">When?</StyledLabel>
         <StyledSelect id="downtime" onChange={e=>{handleSelect(e)}}>
             <StyledOption value="1 day">1 Day</StyledOption>
             <StyledOption value="2 days">2 Days</StyledOption>

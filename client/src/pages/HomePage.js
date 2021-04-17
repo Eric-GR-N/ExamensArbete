@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeroSection from '../components/HeroSection/HeroSection';
+import InventorySection from '../components/InventorySection/InventorySection';
 import NavBar from '../components/NavBar/NavBar';
-import SafetySection from '../components/SafetySection/SafetySection';
 import ToDoSection from '../components/ToDoSection/ToDoSection'
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
         <NavBar/>
         <HeroSection/>
         <ToDoSection />
-        <SafetySection/>
+        <InventorySection/>
         </>
     )
 }

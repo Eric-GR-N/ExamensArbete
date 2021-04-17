@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import img from '../../resources/freddy-castro_Wood3.jpg';
+import {colors} from '../../colors';
 
 export const ToDoOverLay = styled.div`
 width: 100%;
@@ -14,7 +15,7 @@ align-items: center;
 background-image: url(${img});
 background-repeat: no-repeat;
 background-size: cover;
-height: 800px;
+height: 760px;
 width: 100%;
 display: flex;
 flex-direction: column;
@@ -25,7 +26,6 @@ position: relative;
 `
 export const InputWrapper = styled.div`
 flex-shrink: 0;
-${'' /* border: solid blue 3px; */}
 flex-basis: 150px;
 width: 100%;
 position: relative;
@@ -37,6 +37,7 @@ align-items: center;
 `
 
 export const StyledHeader = styled.h1`
+font-size: 2rem; 
 color: black;
 text-shadow: 0.5px 0.5px white;
 `
@@ -87,7 +88,7 @@ position: absolute;
 width: 100%;
 height: 15%;
 font-size: 0.5rem;
-background-color: pink;
+background-color: ${colors.black};
 align-self: flex-end;
 align-items: center;
 justify-content: center;
@@ -135,10 +136,8 @@ text-align: center;
 overflow: hidden;
 
 ${StyledParaGraph}:hover ~ ${StyledSpan}{
-    transition: 0.1s;
     background-color: lightblue;
         > ${StyledHoverText} {
-        transition: 1s;
         display: block;
     }
 } 
