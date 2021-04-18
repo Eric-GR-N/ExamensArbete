@@ -8,5 +8,5 @@ export const colors = {
     lightGreen: '#96ff8f',
     yellow: '#fffd75',
     orange: '#ff8c00',
-    darkGreen: '#074700'
+    darkGreen: '#095700'
 }

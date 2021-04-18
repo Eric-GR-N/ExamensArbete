@@ -31,6 +31,7 @@ cursor: pointer;
 `
 
 export const MenuContainer = styled.ul`
+margin-right: 30px;
 display: flex;
 justify-content: center;
 list-style: none;

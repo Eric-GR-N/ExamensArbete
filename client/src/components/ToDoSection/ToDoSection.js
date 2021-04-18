@@ -6,6 +6,7 @@ StyledParaGraph, StyledSpan, StyledSelect, StyledOption,
 StyledLabel, StyledHoverText} from './ToDoElements';
 import Axios from "axios";
 import emailjs from 'emailjs-com';
+import todo from '../../resources/todo2.jpg';
 
 const ToDoSection = () => {
 
@@ -146,8 +147,7 @@ const ToDoSection = () => {
 
     return (
         <ToDoContainer id="todo">
-        <ToDoOverLay/>
-        <InputWrapper>
+        <InputWrapper img={todo}>
         <StyledHeader>
         Something you want done? Write it!
         </StyledHeader>

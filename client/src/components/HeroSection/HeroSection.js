@@ -1,25 +1,27 @@
 import React from 'react'
-import { HeroContainer, HeroVideoContainer, HeroBackgroundVideo, StyledSpan, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox, IoTBoxImage } from './HeroSectionElements';
+import { HeroContainer, HeroVideoContainer, HeroBackgroundVideo, StyledSpanMeter ,StyledSpan, Plant, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox, IoTBoxImage } from './HeroSectionElements';
 import styled from 'styled-components';
 import Home from '../../resources/Home.mp4';
 import Snow from '../../resources/Snow.mp4';
+import forest from '../../resources/forest2.jpg';
 
 
 const HeroSection = () => {
-    const moist = 90;
+    const moist = 100;
     return (
         <HeroContainer id="home">
-            <HeroVideoContainer>
-                        <OverLay />
-                        {/* <HeroBackgroundVideo src={Snow} autoPlay muted/> */}
-            </HeroVideoContainer>
-            <InnerContainerTop>
+                        {/* <OverLay /> */}
+            <InnerContainerTop img={forest}>
 
             </InnerContainerTop>
             <InnerContainer>
                 <IoTBox>
-                    <IoTBoxImage/>
-                    <StyledSpan moist={moist} />
+                    <IoTBoxImage>
+                        <Plant/>
+                    </IoTBoxImage>
+                    <StyledSpan>
+                        <StyledSpanMeter moist={moist}/>
+                    </StyledSpan>
                 </IoTBox>
                 
                 <IoTBox>

@@ -2,17 +2,18 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import img from '../../resources/freddy-castro_Wood3.jpg';
 import {colors} from '../../colors';
+import { InnerContainerTop, InnerContainer } from '../HeroSection/HeroSectionElements';
 
 export const ToDoOverLay = styled.div`
 width: 100%;
 height: 100%;
 position: absolute;
-background-color: rgba(0,0,0,0);
+background-color: rgba(0,0,0,0.3);
+
 `;
 
 export const ToDoContainer = styled.div`
 align-items: center;
-background-image: url(${img});
 background-repeat: no-repeat;
 background-size: cover;
 height: 760px;
@@ -24,22 +25,19 @@ position: relative;
     height: 100vh;
 } 
 `
-export const InputWrapper = styled.div`
-flex-shrink: 0;
-flex-basis: 150px;
-width: 100%;
-position: relative;
-display: flex;
-margin-top: 80px;
-justify-content: center;
+export const InputWrapper = styled(InnerContainerTop)`
 flex-direction: column;
-align-items: center;
+`
+
+export const ToDoNotesWrapper = styled(InnerContainer)`
+
 `
 
 export const StyledHeader = styled.h1`
 font-size: 2rem; 
-color: black;
-text-shadow: 0.5px 0.5px white;
+color: white;
+${'' /* text-shadow: 0.5px 0.5px white; */}
+margin-top: 30px;
 `
 
 export const StyledInput = styled.input`
@@ -51,20 +49,9 @@ font-size: 1.5rem;
 border-bottom: solid 3px white;
 outline: none;
 width: 400px;
-color: black;
+color: white;
 display: inline;
 `
-export const ToDoNotesWrapper = styled.div`
-${'' /* border: solid yellow 3px; */}
-flex-basis: 480px;
-width: 50%;
-display: flex;
-justify-content: center;
-position: relative;
-align-content: flex-start;
-flex-wrap: wrap;
-overflow: auto;
-` 
 
 export const SubmitButton = styled.button`
 margin: 30px;
@@ -117,7 +104,7 @@ export const StyledOption = styled.option`
 `
 export const StyledLabel = styled.label`
 margin: 15px;
-color: black;
+color: white;
 font-weight: bold;
 font-size: 1.2rem;
 `

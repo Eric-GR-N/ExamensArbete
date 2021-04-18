@@ -3,9 +3,15 @@ import {HeroContainer } from '../HeroSection/HeroSectionElements';
 import styled from 'styled-components'
 import {Link} from 'react-scroll';
 import img from '../../resources/uliana-kopanytsia_kitchen3.jpg'
+import { InnerContainerTop, InnerContainer } from '../HeroSection/HeroSectionElements';
 
 export const InventorySectionContainer = styled(HeroContainer)`
-background-image: url(${img});
-background-size: cover;
-background-repeat: no-repeat; 
+`
+
+export const InputWrapperInventory = styled(InnerContainerTop)`
+
+`
+
+export const BottomContainer = styled(InnerContainer)`
+
 `
