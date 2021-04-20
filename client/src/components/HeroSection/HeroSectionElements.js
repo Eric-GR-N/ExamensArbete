@@ -4,7 +4,7 @@ import {colors} from '../../colors';
 import orchid from '../../resources/orchid3.jpg';
 import sky from '../../resources/Sky1.jpg';
 import { RiPlantFill } from 'react-icons/ri';
-import {FaTemperatureHigh} from 'react-icons/fa';
+import {RiTempColdLine} from 'react-icons/ri';
 
 
 export const HeroContainer = styled.div`
@@ -48,18 +48,17 @@ margin: 0 30px;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-border: solid black 2px;
 position: relative;
 `
 
 export const Plant = styled(RiPlantFill)`
-color: grey;
+color: #144a10;
 width: 60%;
 height: 60%;
 position: absolute;
 `
 
-export const Temp = styled(FaTemperatureHigh)`
+export const Temp = styled(RiTempColdLine)`
 color: grey;
 width: 40%;
 height: 40%;
@@ -67,19 +66,30 @@ position: absolute;
 `
 
 export const StyledSpan = styled.span`
-border: solid grey 2px;
+border: solid #d2d4d2 2px;
 border-radius: 6px;
 width: 100%;
-height: 12%;
+height: 9%;
 bottom: 0;
 position: absolute;
 overflow: hidden;
 `
+
+
 export const StyledSpanMeter = styled.div`
-width: 100%;
 height: 100%;
-background-color: ${props => props.moist < 20 ? colors.red : colors.darkGreen};
+background-color: ${props => props.value < 30 ? colors.red : colors.darkGreen};
+${props => props.moist && css`
+width: ${props.moist}%;
+`}
+${props => props.temp && css`
+width: ${props.temp}%;
+`}
+${props => props.leak && css`
+width: ${props.leak}%;
+`}
 `
+
 
 export const OverLay = styled.div`
 width: 100%;

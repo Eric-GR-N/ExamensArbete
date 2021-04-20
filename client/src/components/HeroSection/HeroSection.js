@@ -1,10 +1,12 @@
 import React from 'react'
-import { HeroContainer, StyledSpanMeter ,StyledSpan, Plant, Temp, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox } from './HeroSectionElements';
+import { HeroContainer, StyledSpanMeter ,StyledSpan, Plant, PlantRuler, TempRuler, LeakRuler ,Temp, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 
 
 const HeroSection = () => {
-    const moist = 100;
+    const moist = 10;
+    const temp = 30;
+    const leak = 90;
     return (
         <HeroContainer id="home">
                         {/* <OverLay /> */}
@@ -13,21 +15,21 @@ const HeroSection = () => {
             </InnerContainerTop>
             <InnerContainer>
                 <IoTBox>
-                        {/* <Plant/> */}
-                        <StyledSpan>
-                              <StyledSpanMeter moist={moist}/>
+                        <Plant/>
+                        <StyledSpan >
+                              <StyledSpanMeter value={moist} moist={moist}/>
                         </StyledSpan>
                 </IoTBox>
                 <IoTBox>
-                        {/* <Plant/> */}
-                        <StyledSpan>
-                              <StyledSpanMeter moist={moist}/>
+                        <Temp/>
+                        <StyledSpan >
+                              <StyledSpanMeter value={temp} temp={temp}/>
                         </StyledSpan>
                 </IoTBox>
                 <IoTBox>
-                        {/* <Plant/> */}
-                        <StyledSpan>
-                              <StyledSpanMeter moist={moist}/>
+                        <Plant/>
+                        <StyledSpan >
+                              <StyledSpanMeter value={temp} leak={leak}/>
                         </StyledSpan>
                 </IoTBox>
 

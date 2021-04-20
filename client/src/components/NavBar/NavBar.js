@@ -1,10 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink } from './NavBarElements';
+import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink, IoTMenu,  IoTList, IoTItem, IoTLink } from './NavBarElements';
+import {Animated} from "react-animated-css";
 
 const NavBar = () => {
+    const [showIoT, setShowIoT] = useState(false);
 
+    const handleIoTMenu = ()=>{
+            if(showIoT){
+                setShowIoT(false)
+            }else {
+                setShowIoT(true);
+            }
+    }
 
+    
     return (
         <NavBarContainer>
             <Logo
@@ -34,7 +44,18 @@ const NavBar = () => {
                     >Inventory</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <MenuLink to="">IoT</MenuLink>
+                    <IoTMenu>IoT</IoTMenu>
+                    <IoTList>
+                        <IoTItem>
+                            <IoTLink>Flower</IoTLink>
+                        </IoTItem>
+                        <IoTItem>
+                            <IoTLink>Temperature</IoTLink>
+                        </IoTItem>
+                        <IoTItem>
+                            <IoTLink>Leakage</IoTLink>
+                        </IoTItem>
+                    </IoTList>
                 </MenuItem>
             </MenuContainer>
             

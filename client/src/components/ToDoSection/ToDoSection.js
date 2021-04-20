@@ -7,6 +7,7 @@ StyledLabel, StyledHoverText} from './ToDoElements';
 import Axios from "axios";
 import emailjs from 'emailjs-com';
 import todo from '../../resources/todo2.jpg';
+import { InnerContainer } from '../HeroSection/HeroSectionElements';
 
 const ToDoSection = () => {
 
@@ -138,9 +139,6 @@ const ToDoSection = () => {
         return taskList.map((val, index)=>{
             return <StyledNote key={index}>
             <StyledParaGraph onClick={e =>handleNoteClick(e)}>{val.task}</StyledParaGraph>
-            <StyledSpan>
-            <StyledHoverText>Done? Click!</StyledHoverText>
-            </StyledSpan>
             </StyledNote>
          })
     }
@@ -169,9 +167,11 @@ const ToDoSection = () => {
             Add Task
         </SubmitButton>
         </InputWrapper>
+        <InnerContainer>
         <ToDoNotesWrapper>
         {renderData()}
         </ToDoNotesWrapper>
+        </InnerContainer>
         </ToDoContainer>
     )
 }

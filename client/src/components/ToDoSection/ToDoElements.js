@@ -9,7 +9,6 @@ width: 100%;
 height: 100%;
 position: absolute;
 background-color: rgba(0,0,0,0.3);
-
 `;
 
 export const ToDoContainer = styled.div`
@@ -29,8 +28,15 @@ export const InputWrapper = styled(InnerContainerTop)`
 flex-direction: column;
 `
 
-export const ToDoNotesWrapper = styled(InnerContainer)`
-
+export const ToDoNotesWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-content: flex-start;
+width: 70%;
+height: 90%;
+position: relative;
+flex-wrap: wrap;
+overflow: auto;
 `
 
 export const StyledHeader = styled.h1`
@@ -73,7 +79,7 @@ export const StyledSpan = styled.span`
 display: flex;
 position: absolute;
 width: 100%;
-height: 15%;
+height: 18%;
 font-size: 0.5rem;
 background-color: ${colors.black};
 align-self: flex-end;
@@ -109,9 +115,10 @@ font-weight: bold;
 font-size: 1.2rem;
 `
 export const StyledNote = styled.div`
-width: 100px;
-height: 150px;
-border-radius: 10px;
+width: 250px;
+border: solid rgba(0,0,0,0.2) 1px;
+height: 50px;
+border-radius: 5px;
 background: white;
 box-shadow: 5px 3px 10px -4px #9F9C9B;
 position: relative;
@@ -122,10 +129,10 @@ justify-content: center;
 text-align: center;
 overflow: hidden;
 
-${StyledParaGraph}:hover ~ ${StyledSpan}{
+${'' /* ${StyledParaGraph}:hover ~ ${StyledSpan}{
     background-color: lightblue;
         > ${StyledHoverText} {
         display: block;
-    }
+    } */}
 } 
 `
