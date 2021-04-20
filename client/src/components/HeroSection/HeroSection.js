@@ -1,8 +1,5 @@
 import React from 'react'
-import { HeroContainer, HeroVideoContainer, HeroBackgroundVideo, StyledSpanMeter ,StyledSpan, Plant, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox, IoTBoxImage } from './HeroSectionElements';
-import styled from 'styled-components';
-import Home from '../../resources/Home.mp4';
-import Snow from '../../resources/Snow.mp4';
+import { HeroContainer, StyledSpanMeter ,StyledSpan, Plant, Temp, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 
 
@@ -16,22 +13,22 @@ const HeroSection = () => {
             </InnerContainerTop>
             <InnerContainer>
                 <IoTBox>
-                    <IoTBoxImage>
-                        <Plant/>
-                    </IoTBoxImage>
-                    <StyledSpan>
-                        <StyledSpanMeter moist={moist}/>
-                    </StyledSpan>
+                        {/* <Plant/> */}
+                        <StyledSpan>
+                              <StyledSpanMeter moist={moist}/>
+                        </StyledSpan>
                 </IoTBox>
-                
                 <IoTBox>
-                    <IoTBoxImage/>
-                    <StyledSpan moist={moist} />
+                        {/* <Plant/> */}
+                        <StyledSpan>
+                              <StyledSpanMeter moist={moist}/>
+                        </StyledSpan>
                 </IoTBox>
-
                 <IoTBox>
-                    <IoTBoxImage/>
-                    <StyledSpan moist={moist} />
+                        {/* <Plant/> */}
+                        <StyledSpan>
+                              <StyledSpanMeter moist={moist}/>
+                        </StyledSpan>
                 </IoTBox>
 
             </InnerContainer>
