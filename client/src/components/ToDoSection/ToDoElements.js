@@ -13,8 +13,6 @@ background-color: rgba(0,0,0,0.3);
 
 export const ToDoContainer = styled.div`
 align-items: center;
-background-repeat: no-repeat;
-background-size: cover;
 height: 760px;
 width: 100%;
 display: flex;
@@ -128,11 +126,4 @@ align-items: center;
 justify-content: center;
 text-align: center;
 overflow: hidden;
-
-${'' /* ${StyledParaGraph}:hover ~ ${StyledSpan}{
-    background-color: lightblue;
-        > ${StyledHoverText} {
-        display: block;
-    } */}
-} 
 `

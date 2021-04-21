@@ -79,10 +79,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 list-style: none;
-
-&:hover {
-    opacity: 1;
-}
 `
 export const IoTItem = styled.li`
 width: 100%;
@@ -97,13 +93,6 @@ font-size: 0.9rem;
 `
 
 export const IoTMenu = styled(MenuLink)`
-
-&:hover ~ ${IoTList}{
-    opacity: 1;
-    transition: opacity 1s ease;
-    
-}
-        
 
 `
 

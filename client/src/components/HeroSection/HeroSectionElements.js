@@ -18,12 +18,12 @@ flex-direction: column;
 `
 
 export const InnerContainer = styled.div`
-top: 65%;
+top: 60%;
 display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
-height: 35%;
+height: 40%;
 position: absolute;
 `
 export const InnerContainerTop = styled.div`
@@ -36,7 +36,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
-height: 65%;
+height: 60%;
 position: absolute;
 `
 
@@ -95,8 +95,8 @@ export const OverLay = styled.div`
 width: 100%;
 height: 100%;
 position: absolute;
-z-index: -1;
-background-color: rgba(255,255,255, 0.8);
+background-color: rgba(0,0,0,1);
+transition: 0.5s;
 `;
 
 

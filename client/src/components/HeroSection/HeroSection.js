@@ -1,5 +1,5 @@
-import React from 'react'
-import { HeroContainer, StyledSpanMeter ,StyledSpan, Plant, PlantRuler, TempRuler, LeakRuler ,Temp, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox } from './HeroSectionElements';
+import React, { useContext } from 'react'
+import { HeroContainer, StyledSpanMeter ,StyledSpan, Plant, PlantRuler, TempRuler, LeakRuler ,Temp, HeroHeader, InnerContainer, InnerContainerTop,OverLay, IoTBox, Overlay } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 
 
@@ -9,10 +9,11 @@ const HeroSection = () => {
     const leak = 90;
     return (
         <HeroContainer id="home">
-                        {/* <OverLay /> */}
-            <InnerContainerTop img={forest}>
 
-            </InnerContainerTop>
+                    <InnerContainerTop img={forest}>
+                        {/* <OverLay showIoT={true}/> */}
+                    </InnerContainerTop>
+
             <InnerContainer>
                 <IoTBox>
                         <Plant/>

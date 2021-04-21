@@ -30,14 +30,13 @@ const ToDoSection = () => {
     const sendReminder = () => {
 
         var templateParams = {
-            task: task
+            task: task,
+            email: 'sanne.jonsson@hotmail.com'
         };
 
         emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
           .then((result) => {
-              console.log(result.task);
           }, (error) => {
-              console.log(error.text);
           });
       }
 
