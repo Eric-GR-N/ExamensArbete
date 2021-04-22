@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink, IoTMenu,  IoTList, IoTItem, IoTLink } from './NavBarElements';
+import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink, IoTMenu,  IoTList, IoTItem, IoTLink, AiFillHome, HomeLogo } from './NavBarElements';
 
 const NavBar = () => {
     const [showIoT, setShowIoT] = useState('hello');
@@ -21,7 +21,7 @@ const NavBar = () => {
             duration={500}
             spy={true}
             exact={true}>
-            Home Page
+           <HomeLogo/>
             </Logo>
             <MenuContainer>
                 <MenuItem>

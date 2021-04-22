@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-scroll';
+import {AiFillHome} from 'react-icons/ai';
 
 
 
@@ -15,6 +16,11 @@ z-index: 100;
 ${'' /* @media only screen and (max-width: 830px) {
     height: 100vh;
 }  */}
+`
+
+export const HomeLogo = styled(AiFillHome)`
+width: 25px;
+height: 25px;
 `
 
 export const Logo = styled(Link)`
