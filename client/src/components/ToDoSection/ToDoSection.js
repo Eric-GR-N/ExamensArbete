@@ -14,7 +14,10 @@ const ToDoSection = () => {
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
     const [deadline, setDeadline] = useState('1 day');
-    const [downtime, addToDownTime] = useState([]);
+    const [downtime, addToDownTime] = useState(()=>{
+        const timers = localStorage.getItem('timers');
+        return timers ? JSON.parse(timers) : [];
+    });
     const [color, setColor] = useState('#ff5252');
 
 
@@ -31,12 +34,13 @@ const ToDoSection = () => {
 
         var templateParams = {
             task: task,
-            email: 'sanne.jonsson@hotmail.com'
         };
 
         emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
           .then((result) => {
+              console.log(result.text);
           }, (error) => {
+              console.log(error);
           });
       }
 
@@ -88,6 +92,7 @@ const ToDoSection = () => {
         })
     }
 
+    //Storing the setTimeout functions for the reminder email
     const handleMissedDeadline = (endtime)=>{
        const deadlineItem =  setTimeout(()=>{
             Axios.put("http://localhost:4000/updatedeadline", { deadline: 'Passed', task: task, }).then((response)=>{
@@ -102,7 +107,7 @@ const ToDoSection = () => {
 
         switch(deadline){
             case '1 day':
-                handleMissedDeadline(dayInMilliseconds);
+                handleMissedDeadline(6000);
                 break;
             case '2 days':
                 handleMissedDeadline(dayInMilliseconds*2);

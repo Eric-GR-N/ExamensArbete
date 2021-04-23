@@ -48,6 +48,16 @@ const db = mysql.createConnection({
     });
   });
 
+  app.get("/iot", (req, res) => {
+    db.query("SELECT flower, temp FROM iotvalues", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
   app.put("/updatestatus", (req, res) => {
     const task = req.body.task;
     const status = 'DONE';

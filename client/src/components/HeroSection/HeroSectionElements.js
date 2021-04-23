@@ -56,6 +56,7 @@ color: #144a10;
 width: 60%;
 height: 60%;
 position: absolute;
+cursor: pointer
 `
 
 export const Temp = styled(RiTempColdLine)`
@@ -106,5 +107,35 @@ font-weight: bold;
 font-size: 3rem;
 align-self: flex-start;
 position: absolute;
+`
+
+export const IotLinkContainer = styled.div`
+top: 0;
+height: 80px;
+width: 100%;
+position: absolute;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+border: solid pink 2px;
+flex-wrap: wrap;
+`
+
+export const IotButton = styled.p`
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+right: 0;
+position: relative;
+height: 40px;
+width: 10%;
+padding: 0;
+border: white solid 2px;
+cursor: pointer;
+z-index: 101;
+`
+export const IotList = styled.ul`
+border: solid green 2px;
 `
 
