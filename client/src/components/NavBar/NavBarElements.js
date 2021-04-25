@@ -76,29 +76,5 @@ transition: 0.4s linear;
     margin: 0 60px;
 }
 `
-export const IoTList = styled.ul`
-opacity: 0;
-top: 30px;
-width: 100%;
-position: absolute;
-display: flex;
-flex-direction: column;
-justify-content: center;
-list-style: none;
-`
-export const IoTItem = styled.li`
-width: 100%;
-height: 100%;
-text-align: center;
-padding: 15px;
-`
 
-export const IoTLink = styled.p`
-color: white;
-font-size: 0.9rem;
-`
-
-export const IoTMenu = styled(MenuLink)`
-
-`
 

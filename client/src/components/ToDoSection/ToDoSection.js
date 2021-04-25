@@ -13,13 +13,6 @@ const ToDoSection = () => {
 
     const [taskList, setTaskList] = useState([]);
     const [task, setTask] = useState();
-    const [deadline, setDeadline] = useState('1 day');
-    const [downtime, addToDownTime] = useState(()=>{
-        const timers = localStorage.getItem('timers');
-        return timers ? JSON.parse(timers) : [];
-    });
-    const [color, setColor] = useState('#ff5252');
-
 
     useEffect(()=>{
         renderData()
@@ -30,34 +23,25 @@ const ToDoSection = () => {
        setData();
     }, [])
 
-    const sendReminder = () => {
+    // const sendReminder = () => {
 
-        var templateParams = {
-            task: task,
-        };
+    //     var templateParams = {
+    //         task: task,
+    //     };
 
-        emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error);
-          });
-      }
+    //     emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
+    //       .then((result) => {
+    //           console.log(result.text);
+    //       }, (error) => {
+    //           console.log(error);
+    //       });
+    //   }
 
     const setData = async () =>{
         const resp = await Axios.get("http://localhost:4000/todo")
         const newTaskList = resp.data.filter(obj=>{
             return obj.status !== 'DONE';
         });
-
-        newTaskList.map(obj=>{
-            if(obj.deadline === 'Passed' && obj.reminder !== 'Sent'){
-                    sendReminder();
-                    Axios.put("http://localhost:4000/updatereminder", { task: task, reminder: 'Sent'}).then((response)=>{
-                    
-                    })
-            }
-        })
 
         setTaskList(newTaskList);
     }
@@ -77,66 +61,12 @@ const ToDoSection = () => {
         setTask(newTask);
     }
 
-    const handleSelect = (e)=>{
-        const newDeadline = e.target.value;
-        setDeadline(newDeadline);
-    }
-
     const handleSubmit = ()=>{
-        setDownTimeHours(deadline);
         Axios.post("http://localhost:4000/tasks", {
             task: task,
-            deadline: deadline
         }).then((response)=>{
             setData();
         })
-    }
-
-    //Storing the setTimeout functions for the reminder email
-    const handleMissedDeadline = (endtime)=>{
-       const deadlineItem =  setTimeout(()=>{
-            Axios.put("http://localhost:4000/updatedeadline", { deadline: 'Passed', task: task, }).then((response)=>{
-                setData();
-            })
-        }, (endtime))
-        addToDownTime([...downtime, deadlineItem]);
-    }
-
-    const setDownTimeHours = (deadline)=>{
-        const dayInMilliseconds = (3600000*24);
-
-        switch(deadline){
-            case '1 day':
-                handleMissedDeadline(6000);
-                break;
-            case '2 days':
-                handleMissedDeadline(dayInMilliseconds*2);
-                break;
-            case '3 days':
-                handleMissedDeadline(dayInMilliseconds*3);
-                break;
-            case '4 days':
-                handleMissedDeadline(dayInMilliseconds*4);
-                break;
-            case '5 days':
-                handleMissedDeadline(dayInMilliseconds*5);
-                break;
-            case '6 days':
-                handleMissedDeadline(dayInMilliseconds*6);
-                break;
-            case '1 week':
-                handleMissedDeadline(dayInMilliseconds*7);
-                break;
-            case '2 weeks':
-                handleMissedDeadline(dayInMilliseconds*14);
-                break;
-            case '3 weeks':
-                handleMissedDeadline(dayInMilliseconds*21);
-                break;
-            case '1 month':
-                handleMissedDeadline(dayInMilliseconds*30);
-                break;
-        }
     }
 
     const renderData = ()=>{
@@ -154,19 +84,6 @@ const ToDoSection = () => {
         Something you want done? Write it!
         </StyledHeader>
         <StyledInput onChange={e => handleInput(e)}/>
-        <StyledLabel for="dropdown">When?</StyledLabel>
-        <StyledSelect id="downtime" onChange={e=>{handleSelect(e)}}>
-            <StyledOption value="1 day">1 Day</StyledOption>
-            <StyledOption value="2 days">2 Days</StyledOption>
-            <StyledOption value="3 days">3 Days</StyledOption>
-            <StyledOption value="4 days">4 Days</StyledOption>
-            <StyledOption value="5 days">5 Days</StyledOption>
-            <StyledOption value="6 days">6 Days</StyledOption>
-            <StyledOption value="1 week">1 Week</StyledOption>
-            <StyledOption value="2 weeks">2 Weeks</StyledOption>
-            <StyledOption value="3 weeks">3 Weeks</StyledOption>
-            <StyledOption value="1 month">1 Month</StyledOption>
-        </StyledSelect>
         <SubmitButton onClick={handleSubmit}>
             Add Task
         </SubmitButton>

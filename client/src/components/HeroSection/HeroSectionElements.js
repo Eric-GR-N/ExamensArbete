@@ -44,7 +44,7 @@ export const IoTBox = styled.div`
 display: flex;
 width: 150px;
 height: 120px;
-margin: 0 30px;
+margin: 0 20px 11px 20px;
 flex-direction: column;
 align-items: center;
 justify-content: center;
@@ -92,12 +92,13 @@ width: ${props.leak}%;
 `
 
 
-export const OverLay = styled.div`
+export const Overlay = styled.div`
 width: 100%;
 height: 100%;
 position: absolute;
 background-color: rgba(0,0,0,1);
-transition: 0.5s;
+opacity: ${props => props.opacity ? 1 : 0};
+transition: opacity 1s ease-in;
 `;
 
 
@@ -117,25 +118,61 @@ position: absolute;
 display: flex;
 justify-content: flex-end;
 align-items: center;
-border: solid pink 2px;
 flex-wrap: wrap;
 `
 
-export const IotButton = styled.p`
+export const IoTMenu = styled.p`
+color: white;
+right: 50px;
+position: absolute;
+letter-spacing: 2px;
+cursor: pointer;
+z-index: 110;
+`
+
+export const IoTList = styled.ul`
+z-index: 110;
+top: 80px;
+position: absolute;
+display: flex;
+flex-direction: column;
+`
+
+export const IoTItem = styled.li`
+`
+
+export const IoTLink = styled.p`
+text-align: center;
+color: white;
+padding: 20px;
+font-size: 0.9rem;
+`
+export const IoTTextWrapper = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-color: white;
-right: 0;
+width: 60%;
+height: 90%;
+${'' /* border: solid pink 2px; */}
 position: relative;
-height: 40px;
-width: 10%;
-padding: 0;
-border: white solid 2px;
-cursor: pointer;
-z-index: 101;
+margin-bottom: 11px;
 `
-export const IotList = styled.ul`
-border: solid green 2px;
+export const IoTText = styled.p`
+text-align: center;
+position: absolute;
+word-wrap: break-word;
+line-height: 30px;
 `
+
+export const IoTWrapper = styled.div`
+display: flex;
+justify-content: flex-start;
+align-items: center;
+border: black 2px solid;
+border-radius: 5px;
+width: 40%;
+height: 60%;
+position: relative;
+` 
+
 

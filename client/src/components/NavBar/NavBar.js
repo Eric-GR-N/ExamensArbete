@@ -3,16 +3,7 @@ import styled from 'styled-components'
 import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink, IoTMenu,  IoTList, IoTItem, IoTLink, AiFillHome, HomeLogo } from './NavBarElements';
 
 const NavBar = () => {
-    const [showIoT, setShowIoT] = useState('hello');
-
-    const handleIoTMenu = ()=>{
-            if(showIoT){
-                setShowIoT(false)
-            }else {
-                setShowIoT(true);
-            }
-    }
-
+    
     return (
         <NavBarContainer>
             <Logo
@@ -42,18 +33,7 @@ const NavBar = () => {
                     >Inventory</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                    <IoTMenu onCLick={handleIoTMenu}>IoT</IoTMenu>
-                    <IoTList>
-                        <IoTItem>
-                            <IoTLink>Flower</IoTLink>
-                        </IoTItem>
-                        <IoTItem>
-                            <IoTLink>Temperature</IoTLink>
-                        </IoTItem>
-                        <IoTItem>
-                            <IoTLink>Leakage</IoTLink>
-                        </IoTItem>
-                    </IoTList>
+                <MenuLink>IoT</MenuLink>
                 </MenuItem>
             </MenuContainer>
         </NavBarContainer>
