@@ -1,10 +1,11 @@
 import React from 'react'
 import styled, {css} from 'styled-components';
 import {colors} from '../../colors';
-import orchid from '../../resources/orchid3.jpg';
-import sky from '../../resources/Sky1.jpg';
+import flower from '../../resources/rose.jpg';
 import { RiPlantFill } from 'react-icons/ri';
-import {RiTempColdLine} from 'react-icons/ri';
+import {FiSun} from 'react-icons/fi';
+import {GiPlantWatering} from 'react-icons/gi'
+import {BsDroplet} from 'react-icons/bs';
 
 
 export const HeroContainer = styled.div`
@@ -40,30 +41,36 @@ height: 60%;
 position: absolute;
 `
 
-export const IoTBox = styled.div`
-display: flex;
-width: 150px;
-height: 120px;
-margin: 0 20px 11px 20px;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-position: relative;
+export const Flower = styled(GiPlantWatering)`
+position: absolute;
+width: 35%;
+height: 35%;
+z-index: -1;
+${props => props.type === 'plant' && css`
+color: ${props.highlight ? colors.lightGreen : 'black'};
+`}
 `
 
-export const Plant = styled(RiPlantFill)`
-color: #144a10;
-width: 60%;
-height: 60%;
+export const Drop = styled(BsDroplet)`
 position: absolute;
-cursor: pointer
+width: 30%;
+height: 30%;
+z-index: -1;
+${props => props.type === 'drop' && css`
+color: ${props.highlight ? colors.lightBlue : 'black'};
+`}
 `
 
-export const Temp = styled(RiTempColdLine)`
-color: grey;
-width: 40%;
-height: 40%;
+export const Temp = styled(FiSun)`
+width: 30%;
+height: 30%;
 position: absolute;
+z-index: -1;
+
+${props => props.type === 'temp' && css`
+color: ${props.highlight ? colors.yellow : 'black'};
+`}
+
 `
 
 export const StyledSpan = styled.span`
@@ -74,10 +81,12 @@ height: 9%;
 bottom: 0;
 position: absolute;
 overflow: hidden;
+z-index: -1;
 `
 
 
 export const StyledSpanMeter = styled.div`
+z-index: -1;
 height: 100%;
 background-color: ${props => props.value < 30 ? colors.red : colors.darkGreen};
 ${props => props.moist && css`
@@ -97,8 +106,8 @@ width: 100%;
 height: 100%;
 position: absolute;
 background-color: rgba(0,0,0,1);
-opacity: ${props => props.opacity ? 1 : 0};
-transition: opacity 1s ease-in;
+opacity: ${props => props.opacity ? 0.6 : 0};
+transition: opacity 0.3s ease-in-out;
 `;
 
 
@@ -110,43 +119,7 @@ align-self: flex-start;
 position: absolute;
 `
 
-export const IotLinkContainer = styled.div`
-top: 0;
-height: 80px;
-width: 100%;
-position: absolute;
-display: flex;
-justify-content: flex-end;
-align-items: center;
-flex-wrap: wrap;
-`
 
-export const IoTMenu = styled.p`
-color: white;
-right: 50px;
-position: absolute;
-letter-spacing: 2px;
-cursor: pointer;
-z-index: 110;
-`
-
-export const IoTList = styled.ul`
-z-index: 110;
-top: 80px;
-position: absolute;
-display: flex;
-flex-direction: column;
-`
-
-export const IoTItem = styled.li`
-`
-
-export const IoTLink = styled.p`
-text-align: center;
-color: white;
-padding: 20px;
-font-size: 0.9rem;
-`
 export const IoTTextWrapper = styled.div`
 display: flex;
 justify-content: center;
@@ -165,14 +138,63 @@ line-height: 30px;
 `
 
 export const IoTWrapper = styled.div`
+box-shadow: 5px 3px 10px -4px #9F9C9B;
+background-color: white;
 display: flex;
 justify-content: flex-start;
 align-items: center;
-border: black 2px solid;
 border-radius: 5px;
 width: 40%;
+height: 40%;
+position: relative;
+opacity: ${props => props.opacity ? 0.9 : 0};
+transition: opacity 0.3s ease-in;
+` 
+export const IoTInfoBox = styled.div`
+margin: 0 20px 11px 20px;
+display: flex;
+width: 150px;
+height: 120px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+`
+
+export const GetText = styled.p`
+position: absolute;
+width: 100%;
+height: 100%;
+font-size: 0;
+cursor: pointer;
+z-index: 10;
+`
+
+export const IoTBox = styled.div`
+background-color: white;
+z-index: 10;
+overflow: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 25px;
+background-size: cover;
+background-repeat: no-repeat;
+width: 12%;
 height: 60%;
 position: relative;
-` 
+margin: 5%;
+box-shadow: 5px 3px 10px -4px #9F9C9B;
+`
+
+export const BoxText = styled.p`
+display: flex;
+align-self: flex-end;
+width: 100%;
+height: 20%;
+justify-content: center;
+align-items: center;
+z-index: -1;
+`
 
 

@@ -1,90 +1,135 @@
 import React, { useState, useEffect } from 'react'
-import { HeroContainer, StyledSpanMeter, IotList, 
-IotLinkContainer ,StyledSpan, Plant, PlantRuler, TempRuler, LeakRuler ,
+import { HeroContainer, StyledSpanMeter, StyledSpan, Plant,
 Temp, HeroHeader, InnerContainer, InnerContainerTop, 
-OverLay, IoTBox, Overlay, IoTList, IoTItem, IoTLink, IoTMenu, IoTContainer, IoTWrapper, IoTText, IoTTextWrapper } from './HeroSectionElements';
+IoTBox, Overlay, IoTWrapper, IoTText, IoTTextWrapper,GetText, IoTInfoBox, Flower, BoxText, Drop } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 import Axios from 'axios';
-
+import {colors} from '../../colors';
 
 const HeroSection = () => {
     const [flowerValue, setFlowerValue] = useState();
+    const [tempValue, setTempValue] = useState(29);
     const [showIoT, setShowIoT] = useState(false);
-    const [opacity, setOpacity] = useState(0);
+    const [type, setType] = useState();
+    const [flowerHighLight, setFlowerHighLight] = useState(false);
+    const [tempHighLight, setTempHighLight] = useState(false);
+    const [dropHighLight, setDropHighLight] = useState(false);
+
+    const IoTDoc = {
+        plant: 'On the meter to the left we can see flower\'s need for water. The sensor measures the dryness of the soil',
+        temp: 'On the meter to the left we can see the temperature around the flower',
+        leakage: 'On the meter to the left we can see if we have encountered a leakage'
+    }
+
+    useEffect(()=>{
+        if(type){
+            setShowIoT(true);
+        }
+
+    }, [type])
 
     const getIotData = async () =>{
         const resp = await Axios.get("http://localhost:4000/iot");
         setFlowerValue(resp.data[0].flower);
+        setTempValue(resp.data[0].temp);
     }
 
-    useEffect(()=>{
+    const closeMenu = () =>{
+        setShowIoT(false);
+    }
+
+    const renderIoTFacts = ()=>{
+        if(type === 'plant'){
+            return(
+                <IoTWrapper opacity={showIoT}>
+                <IoTInfoBox>
+                    <Flower />
+                    <StyledSpan>
+                        <StyledSpanMeter value={flowerValue} moist={flowerValue} />
+                    </StyledSpan>
+                </IoTInfoBox>
+                <IoTTextWrapper>
+                        <IoTText>
+                            {IoTDoc.plant}
+                        </IoTText>
+                    </IoTTextWrapper>
+                    </IoTWrapper>
+            )
+        }else if(type === 'temp'){
+            return(
+                <IoTWrapper opacity={showIoT}>
+                <IoTInfoBox>
+                    <Temp />
+                    <StyledSpan>
+                        <StyledSpanMeter value={tempValue} temp={tempValue} />
+                    </StyledSpan>
+                </IoTInfoBox>
+                <IoTTextWrapper>
+                        <IoTText>
+                            {IoTDoc.temp}
+                        </IoTText>
+                    </IoTTextWrapper>
+                    </IoTWrapper>
+            )
+        }else if(type === 'drop'){
+            return(
+                <IoTWrapper opacity={showIoT}>
+                <IoTInfoBox>
+                    <Drop />
+                    <StyledSpan>
+                        <StyledSpanMeter value={tempValue} temp={tempValue} />
+                    </StyledSpan>
+                </IoTInfoBox>
+                <IoTTextWrapper>
+                        <IoTText>
+                            {IoTDoc.leakage}
+                        </IoTText>
+                    </IoTTextWrapper>
+                    </IoTWrapper>
+            )
+        }
+
+    }
+
+    const handleIoTMenu = (e)=>{
         getIotData();
-        console.log('I RAN')
-        renderTopContainer();
-    }, [opacity])
-
-    const renderTopContainer = ()=>{
-
-        return (
-        <InnerContainerTop img={forest} opacity={opacity}>
-        <Overlay opacity={showIoT}/>
-        <IotLinkContainer>
-        <IoTMenu onClick={handleIoTMenu}>IOT</IoTMenu>
-        <IoTList>
-            <IoTItem>
-                <IoTLink>
-                    Flower
-                </IoTLink>
-            </IoTItem>
-            <IoTItem>
-                <IoTLink>
-                    Temperature
-                </IoTLink>
-            </IoTItem>
-            <IoTItem>
-                <IoTLink>
-                    Whatever
-                </IoTLink>
-            </IoTItem>
-        </IoTList>
-        </IotLinkContainer>
-    </InnerContainerTop>
-    )
-    }
-
-
-    const handleIoTMenu = ()=>{
+        setType(e.target.innerText);
+        
         if(showIoT){
             setShowIoT(false)
         }else {
             setShowIoT(true);
-
         }
 }
 
-    const moist = 10;
-    const temp = 30;
-    const leak = 90;
     return (
         <HeroContainer id="home">
-
-                    {renderTopContainer()}
-                    <InnerContainer>
-                    <IoTWrapper>
-                <IoTBox>
-                <Plant onClick={getIotData} />
-                <StyledSpan >
-                    <StyledSpanMeter value={flowerValue} moist={flowerValue}/>
-                </StyledSpan>
-        </IoTBox>
-        <IoTTextWrapper>
-                <IoTText>
-                Pfourtz ! rucksack turpis, wie turpis bissame risus, 
-                nüdle commodo wurscht eget Verdammi aliquam Richard 
-                Schirmeck Yo dû. hopla quam, Hans sit Hein
-                </IoTText>
-                </IoTTextWrapper>
-        </IoTWrapper>
+        <InnerContainerTop img={forest}>
+        <Overlay opacity={showIoT}/>
+        {renderIoTFacts()}
+    </InnerContainerTop>
+       <InnerContainer>
+       <IoTBox onClick={e => handleIoTMenu(e)}>
+           <GetText>
+               plant
+           </GetText>
+           <Flower highlight={showIoT} type={type}/>
+           <BoxText>Flower Health</BoxText>
+       </IoTBox>
+       <IoTBox onClick={e => handleIoTMenu(e)}>
+           <GetText>
+               temp
+           </GetText>
+           <Temp highlight={showIoT} type={type}/>
+           <BoxText>Temperature</BoxText>
+       </IoTBox>
+       <IoTBox onClick={e => handleIoTMenu(e)}>
+           <GetText>
+               drop
+           </GetText>
+           <Drop highlight={showIoT} type={type}/>
+           <BoxText>Leakage</BoxText>
+       </IoTBox>
         </InnerContainer>
         </HeroContainer>
     )
