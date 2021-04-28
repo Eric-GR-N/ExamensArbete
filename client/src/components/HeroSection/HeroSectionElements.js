@@ -48,6 +48,9 @@ height: 35%;
 z-index: -1;
 ${props => props.type === 'plant' && css`
 color: ${props.highlight ? colors.lightGreen : 'black'};
+transition: 0.2s ease-in-out;
+width: ${props.highlight ? '37%' : '35%'};
+height: ${props.highlight ? '37%' : '35%'};
 `}
 `
 
@@ -58,6 +61,9 @@ height: 30%;
 z-index: -1;
 ${props => props.type === 'drop' && css`
 color: ${props.highlight ? colors.lightBlue : 'black'};
+transition: 0.2s ease-in-out;
+width: ${props.highlight ? '32%' : '30%'};
+height: ${props.highlight ? '32%' : '30%'};
 `}
 `
 
@@ -69,6 +75,9 @@ z-index: -1;
 
 ${props => props.type === 'temp' && css`
 color: ${props.highlight ? colors.yellow : 'black'};
+transition: 0.2s ease-in-out;
+width: ${props.highlight ? '32%' : '30%'};
+height: ${props.highlight ? '32%' : '30%'};
 `}
 
 `
@@ -88,7 +97,7 @@ z-index: -1;
 export const StyledSpanMeter = styled.div`
 z-index: -1;
 height: 100%;
-background-color: ${props => props.value < 30 ? colors.red : colors.darkGreen};
+background-color: ${props => props.value < 30 ? colors.red : colors.lightGreen};
 ${props => props.moist && css`
 width: ${props.moist}%;
 `}
