@@ -84,7 +84,7 @@ height: ${props.highlight ? '32%' : '30%'};
 `
 
 export const StyledSpan = styled.span`
-border: solid #d2d4d2 2px;
+border: solid black 2px;
 border-radius: 6px;
 width: 100%;
 height: 9%;

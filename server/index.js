@@ -75,7 +75,7 @@ const db = mysql.createConnection({
   });
 
   app.get("/iot", (req, res) => {
-    db.query("SELECT flower, temp FROM iotvalues", (err, result) => {
+    db.query("SELECT flower, temp, leak FROM iotvalues", (err, result) => {
       if (err) {
         console.log(err);
       } else {

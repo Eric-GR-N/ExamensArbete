@@ -2,7 +2,7 @@ import React from 'react'
 import {StyledInput, StyledNote, SubmitButton} from '../ToDoSection/ToDoElements';
 import styled from 'styled-components'
 import {Link} from 'react-scroll';
-import { InnerContainerTop, InnerContainer, HeroContainer} from '../HeroSection/HeroSectionElements';
+import { InnerContainerTop, InnerContainer, HeroContainer, Overlay} from '../HeroSection/HeroSectionElements';
 
 export const InventorySectionContainer = styled(HeroContainer)`
 `
@@ -60,7 +60,7 @@ height: 80%;
 position: relative;
 overflow: auto;
 flex-wrap: wrap;
-display: ${props => props.open ? 'flex' : 'none'}
+display: ${props => props.open ? 'none' : 'flex'}
 `
 
 export const GroceryNote = styled(StyledNote)`
@@ -121,4 +121,8 @@ position: absolute;
 display: flex;
 justify-content: flex-end;
 align-items: center;
+`
+
+export const OverLay = styled(Overlay)`
+opacity: 0.5;
 `

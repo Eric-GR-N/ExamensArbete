@@ -29,7 +29,8 @@ const HeroSection = () => {
     const getIotData = async () =>{
         const resp = await Axios.get("http://localhost:4000/iot");
         setFlowerValue(resp.data[0].flower);
-        // setTempValue(resp.data[0].temp);
+        setTempValue(resp.data[0].temp);
+        setDropValue(resp.data[0].leak);
     }
 
     const closeMenu = () =>{

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { InventorySectionContainer, InputWrapperInventory, 
-BottomContainer, GroceryHeader, GroceryInput, GroceryContainer, GroceryNote,
+BottomContainer, GroceryHeader, GroceryInput, GroceryContainer, GroceryNote, OverLay,
 StyledParagraph,Button, InputContainer, InputBox, ResultContainer, ResultText, GroceryListButton, ButtonContainer
 } 
 from './InventorySectionElements'
@@ -63,7 +63,13 @@ const InventorySection = () => {
     }
 
     const searchGrocery = ()=>{
-        if(groceryList.includes(grocery)){
+        
+        const upperCaseList = groceryList.map(item=>{
+            return item.toUpperCase();
+        })
+        const upperCaseGrocery = grocery.toUpperCase();
+
+        if(upperCaseList.includes(upperCaseGrocery)){
             setResult(true)
         }else{
             setResult(false)
@@ -87,8 +93,9 @@ const InventorySection = () => {
     return (
         <InventorySectionContainer id="inventory">
         <InputWrapperInventory img={pantry}>
+        <OverLay/>
         <ButtonContainer>
-        <GroceryListButton onClick={handleGroceryList}>See All Groceries</GroceryListButton>
+        <GroceryListButton onClick={handleGroceryList}>Hide/Show Grocery List</GroceryListButton>
         </ButtonContainer>
         <InputContainer>
         <InputBox>
