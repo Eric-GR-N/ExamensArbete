@@ -9,16 +9,14 @@ import {colors} from '../../colors';
 const HeroSection = () => {
     const [flowerValue, setFlowerValue] = useState();
     const [tempValue, setTempValue] = useState(29);
+    const [dropValue, setDropValue] = useState(true);
     const [showIoT, setShowIoT] = useState(false);
     const [type, setType] = useState();
-    const [flowerHighLight, setFlowerHighLight] = useState(false);
-    const [tempHighLight, setTempHighLight] = useState(false);
-    const [dropHighLight, setDropHighLight] = useState(false);
 
     const IoTDoc = {
         plant: 'On the meter to the left we can see flower\'s need for water. The sensor measures the dryness of the soil',
         temp: 'On the meter to the left we can see the temperature around the flower',
-        leakage: 'On the meter to the left we can see if we have encountered a leakage'
+        leakage: 'To the left we can see if we have encountered a leakage, the drop is turning blue if there is water on the floor'
     }
 
     useEffect(()=>{
@@ -31,7 +29,7 @@ const HeroSection = () => {
     const getIotData = async () =>{
         const resp = await Axios.get("http://localhost:4000/iot");
         setFlowerValue(resp.data[0].flower);
-        setTempValue(resp.data[0].temp);
+        // setTempValue(resp.data[0].temp);
     }
 
     const closeMenu = () =>{
@@ -75,10 +73,7 @@ const HeroSection = () => {
             return(
                 <IoTWrapper opacity={showIoT}>
                 <IoTInfoBox>
-                    <Drop />
-                    <StyledSpan>
-                        <StyledSpanMeter value={tempValue} temp={tempValue} />
-                    </StyledSpan>
+                    <Drop leak={dropValue}/>
                 </IoTInfoBox>
                 <IoTTextWrapper>
                         <IoTText>

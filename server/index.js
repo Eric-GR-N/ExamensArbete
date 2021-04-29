@@ -37,8 +37,35 @@ const db = mysql.createConnection({
       );
   })
 
+  app.post("/groceries", (req, res) =>{
+    const grocery = req.body.grocery;
+    const sqlInsertTask = 'INSERT INTO inventory (grocery) VALUES (?)';
+
+    db.query(
+        sqlInsertTask,
+        [grocery],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send("Values Inserted");
+          }
+        }
+      );
+  })
+
   app.get("/todo", (req, res) => {
     db.query("SELECT task, status FROM todo", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
+  app.get("/groceries", (req, res) => {
+    db.query("SELECT grocery FROM inventory", (err, result) => {
       if (err) {
         console.log(err);
       } else {
@@ -64,6 +91,22 @@ const db = mysql.createConnection({
     db.query(
       "UPDATE todo SET status = ? WHERE task = ?",
       [status, task],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  });
+
+  app.delete("/deletegrocery/:id", (req, res) => {
+    const grocery = req.params.id;
+
+    db.query(
+      "DELETE from inventory WHERE grocery = ?",
+      [grocery],
       (err, result) => {
         if (err) {
           console.log(err);

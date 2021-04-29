@@ -5,7 +5,7 @@ import flower from '../../resources/rose.jpg';
 import { RiPlantFill } from 'react-icons/ri';
 import {FiSun} from 'react-icons/fi';
 import {GiPlantWatering} from 'react-icons/gi'
-import {BsDroplet} from 'react-icons/bs';
+import {BsFillDropletFill} from 'react-icons/bs';
 
 
 export const HeroContainer = styled.div`
@@ -54,7 +54,8 @@ height: ${props.highlight ? '37%' : '35%'};
 `}
 `
 
-export const Drop = styled(BsDroplet)`
+export const Drop = styled(BsFillDropletFill)`
+color: ${props => props.leak ? colors.lightBlue : 'black'};
 position: absolute;
 width: 30%;
 height: 30%;

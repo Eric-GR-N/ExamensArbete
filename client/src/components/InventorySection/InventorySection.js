@@ -5,6 +5,7 @@ StyledParagraph,Button, InputContainer, InputBox, ResultContainer, ResultText, G
 } 
 from './InventorySectionElements'
 import pantry from '../../resources/pantry1.jpg';
+import Axios from 'axios';
 
 
 
@@ -13,21 +14,52 @@ import pantry from '../../resources/pantry1.jpg';
 const InventorySection = () => {
     const [showGroceries, setShowGroceries] = useState(false);
     const [grocery, setGrocery] = useState();
-    const [groceryList, setGroceryList] = useState(['Äpple', 'Päron', 'Havregryn', 'Mjölk']);
+    const [groceryList, setGroceryList] = useState([]);
     const [result, setResult] = useState();
+
+    useEffect(()=>{
+        getData();
+     }, [])
 
     useEffect(()=>{
         renderData();
         console.log('I RAN')
     },[groceryList])
 
+
+    const getData = async () =>{
+        const resp = await Axios.get("http://localhost:4000/groceries")
+        console.log(resp.data);
+        
+        const newGroceryList = resp.data.map(obj=>{
+            console.log(obj.grocery);
+            return obj.grocery;
+        });
+        setGroceryList(newGroceryList);
+    }
+
+
     const addGrocery = ()=>{
-        setGroceryList([...groceryList, grocery]);
-        console.log(groceryList);
+        Axios.post("http://localhost:4000/groceries", {
+            grocery: grocery,
+        }).then((response)=>{
+            getData();
+        })
     }
 
     const handleGroceryInput = (e)=>{
        setGrocery(e.target.value);
+    }
+
+    const handleNoteClick = (e)=>{
+        deleteData(e.target.textContent);
+    }
+
+    const deleteData = (grocery)=>{
+
+        Axios.delete(`http://localhost:4000/deletegrocery/${grocery}`).then((response)=>{
+            getData();
+        })
     }
 
     const searchGrocery = ()=>{
@@ -48,7 +80,7 @@ const InventorySection = () => {
     
     const renderData = ()=>{
         return groceryList.map(item =>{
-            return <GroceryNote><StyledParagraph>{item}</StyledParagraph></GroceryNote>
+            return <GroceryNote><StyledParagraph onClick={e => handleNoteClick(e)}>{item}</StyledParagraph></GroceryNote>
         })
     }
 
