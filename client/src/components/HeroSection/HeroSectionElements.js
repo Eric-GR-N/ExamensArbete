@@ -98,7 +98,7 @@ z-index: -1;
 export const StyledSpanMeter = styled.div`
 z-index: -1;
 height: 100%;
-background-color: ${props => props.value < 30 ? colors.red : colors.lightGreen};
+background-color: ${props => props.value > 86 ? colors.red : colors.lightGreen};
 ${props => props.moist && css`
 width: ${props.moist}%;
 `}
