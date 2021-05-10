@@ -4,6 +4,7 @@ Temp, HeroHeader, InnerContainer, InnerContainerTop,
 IoTBox, Overlay, IoTWrapper, IoTText, IoTTextWrapper,GetText, IoTInfoBox, Flower, BoxText, Drop } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 import Axios from 'axios';
+import emailjs from 'emailjs-com';
 import {colors} from '../../colors';
 
 const HeroSection = () => {
@@ -13,10 +14,25 @@ const HeroSection = () => {
     const [showIoT, setShowIoT] = useState(false);
     const [type, setType] = useState();
     const [tempMessage, setTempMessage] = useState();
+    const [mailSent, setMailSent] = useState(false);
 
     useEffect(() => {
         getIotData();
     }, [])
+
+        const sendMail = (mailMessage) => {
+        var templateParams = {
+            message: mailMessage,
+        };
+
+        emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
+          .then((result) => {
+              console.log(result.text);
+              setMailSent(true);
+          }, (error) => {
+              console.log(error);
+          });
+      }
 
     const IoTDoc = {
         plant: 'Till vänster kan vi se om blomman mår. Visar mätaren rött så är det dags att vattna',
@@ -32,13 +48,23 @@ const HeroSection = () => {
 
     const getIotData = async () =>{
         const resp = await Axios.get("http://localhost:4000/iot");
-        setFlowerValue((resp.data[0].flower/5));
+        setFlowerValue((resp.data[0].flower/11));
         setTempValue(resp.data[0].temp);
-        setDropValue(resp.data[0].flower > 430 ? false : true);
+        setDropValue(resp.data[0].leak > 100 ? true : false);
+
+        if(flowerValue < 40){
+            if(!mailSent){
+                sendMail(`Jag behöver vattnas :)\n\n/Hjördis`);
+                setMailSent(true);
+            }
+        }else{
+            setMailSent(false);
+        }
 
         if(tempValue){
             if(tempValue>50 || tempValue < 5){
-                setTempMessage(tempValue > 50 ? `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt hög och vi kanske har en brand i hemmet` : `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt låg och vi kanske bör stänga fönster och kontrollera elementen`);
+                setTempMessage(tempValue > 45 ? `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt hög och vi kanske har en brand i hemmet` : `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt låg och vi kanske bör stänga fönster och kontrollera elementen`);
+                sendMail(`Temperaturen i lägenheten är nu ${tempValue}, vilket tyder på att något är fel. Kolla genast upp vad det kan bero på`);
             }else{
                 setTempMessage(`Temperaturen är ${tempValue}. Det innebär att temperaturen i hemmet inte indikerar några problem`);
             }

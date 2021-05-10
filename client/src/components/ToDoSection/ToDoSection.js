@@ -23,20 +23,6 @@ const ToDoSection = () => {
        setData();
     }, [])
 
-    // const sendReminder = () => {
-
-    //     var templateParams = {
-    //         task: task,
-    //     };
-
-    //     emailjs.send('gmail', 'template_4qpml08', templateParams ,'user_hMExUOMfI9Ct0t1FC2ou6')
-    //       .then((result) => {
-    //           console.log(result.text);
-    //       }, (error) => {
-    //           console.log(error);
-    //       });
-    //   }
-
     const setData = async () =>{
         const resp = await Axios.get("http://localhost:4000/todo")
         const newTaskList = resp.data.filter(obj=>{

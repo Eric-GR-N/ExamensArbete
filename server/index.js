@@ -117,6 +117,19 @@ const db = mysql.createConnection({
     );
   });
 
+  app.delete('/deletedone', (req, res)=>{
+    const status = 'DONE';
+    db.query('DELETE from todo WHERE status = ?',
+    [status], 
+    (err, result)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  })
+
 
 //Setting up port for backend
 server.listen(PORT, ()=>{
