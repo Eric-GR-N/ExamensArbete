@@ -13,7 +13,7 @@ char ssid[] = SECRET_SSID;
 char pass []= SECRET_PASS;
 
 
-IPAddress server_addr(192, 168, 1, 65);    // MySQL server IP home - IPv4 - adress
+IPAddress server_addr(192, 168, 1, xx);    // MySQL server IP home - IPv4 - adress
 
 char user[] = SECRET_SQLUSER;                      // MySQL user
 char password[] = SECRET_SQLPASS;               // MySQL password
