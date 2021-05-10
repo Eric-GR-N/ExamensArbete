@@ -35,7 +35,7 @@ const HeroSection = () => {
       }
 
     const IoTDoc = {
-        plant: 'Till vänster kan vi se om blomman mår. Visar mätaren rött så är det dags att vattna',
+        plant: 'Till vänster kan vi se hur blomman mår. Visar mätaren rött så är det dags att vattna',
         temp: tempMessage,
         leakage: 'Till vänster kan vi se om vi har ett eventuellt läckage i lägenheten. Är droppen blå så är det en indikation på att det är vatten på golvet'
     }
@@ -63,10 +63,10 @@ const HeroSection = () => {
 
         if(tempValue){
             if(tempValue>50 || tempValue < 5){
-                setTempMessage(tempValue > 45 ? `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt hög och vi kanske har en brand i hemmet` : `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt låg och vi kanske bör stänga fönster och kontrollera elementen`);
-                sendMail(`Temperaturen i lägenheten är nu ${tempValue}, vilket tyder på att något är fel. Kolla genast upp vad det kan bero på`);
+                setTempMessage(tempValue > 45 ? `Temperaturen är nu ${tempValue} grader celcius. Det innebär att temperaturen är ovanligt hög och vi kanske har en brand i hemmet` : `Temperaturen är ${tempValue}. Det innebär att temperaturen är ovanligt låg och vi kanske bör stänga fönster och kontrollera elementen`);
+                sendMail(`Temperaturen i lägenheten är nu ${tempValue} grader celcius, vilket tyder på att något är fel. Kolla genast upp vad det kan bero på`);
             }else{
-                setTempMessage(`Temperaturen är ${tempValue}. Det innebär att temperaturen i hemmet inte indikerar några problem`);
+                setTempMessage(`Temperaturen är nu ${tempValue} grader celcius. Det innebär att temperaturen i hemmet inte indikerar några problem`);
             }
         }
     }
@@ -145,21 +145,21 @@ const HeroSection = () => {
                plant
            </GetText>
            <Flower highlight={showIoT} type={type}/>
-           <BoxText>Flower Health</BoxText>
+           <BoxText>Bevattning</BoxText>
        </IoTBox>
        <IoTBox onClick={e => handleIoTMenu(e)}>
            <GetText>
                temp
            </GetText>
            <Temp highlight={showIoT} type={type}/>
-           <BoxText>Temperature</BoxText>
+           <BoxText>Temperatur</BoxText>
        </IoTBox>
        <IoTBox onClick={e => handleIoTMenu(e)}>
            <GetText>
                drop
            </GetText>
            <Drop highlight={showIoT} type={type}/>
-           <BoxText>Leakage</BoxText>
+           <BoxText>Läckage</BoxText>
        </IoTBox>
         </InnerContainer>
         </HeroContainer>

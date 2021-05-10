@@ -67,11 +67,11 @@ const ToDoSection = () => {
         <ToDoContainer id="todo">
         <InputWrapper img={todo}>
         <StyledHeader>
-        Something you want done? Write it!
+        Något du vill ha gjort? Skriv ner det!
         </StyledHeader>
         <StyledInput onChange={e => handleInput(e)}/>
         <SubmitButton onClick={handleSubmit}>
-            Add Task
+            Lägg Till
         </SubmitButton>
         </InputWrapper>
         <InnerContainer>

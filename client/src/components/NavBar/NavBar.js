@@ -28,7 +28,7 @@ const NavBar = () => {
                     duration={500}
                     spy={true}
                     exact={true}
-                    >To Do</MenuLink>
+                    >Att Göra</MenuLink>
                 </MenuItem>
                 <MenuItem>
                     <MenuLink 
@@ -40,7 +40,7 @@ const NavBar = () => {
                     >Skafferi</MenuLink>
                 </MenuItem>
                 <MenuItem>
-                <MenuLink onClick={cleanUpDB}>Rensa Databas</MenuLink>
+                <MenuLink onClick={cleanUpDB}>Städa Databas</MenuLink>
                 </MenuItem>
             </MenuContainer>
         </NavBarContainer>

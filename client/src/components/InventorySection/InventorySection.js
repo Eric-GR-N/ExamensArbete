@@ -95,22 +95,22 @@ const InventorySection = () => {
         <InputWrapperInventory img={pantry}>
         <OverLay/>
         <ButtonContainer>
-        <GroceryListButton onClick={handleGroceryList}>Hide/Show Grocery List</GroceryListButton>
+        <GroceryListButton onClick={handleGroceryList}>Göm/Visa Matvaror</GroceryListButton>
         </ButtonContainer>
         <InputContainer>
         <InputBox>
-        <GroceryHeader>Add Grocery</GroceryHeader>
+        <GroceryHeader>Lägg Till Matvara</GroceryHeader>
         <GroceryInput onChange={handleGroceryInput}/>
-        <Button onClick={addGrocery}>Add</Button>
+        <Button onClick={addGrocery}>Lägg till</Button>
         </InputBox>
 
         <InputBox>
-        <GroceryHeader>Search Grocery</GroceryHeader>
+        <GroceryHeader>Sök Matvara</GroceryHeader>
         <GroceryInput onChange={handleGroceryInput}/>
-        <Button onClick={searchGrocery}>Search</Button>
+        <Button onClick={searchGrocery}>Sök</Button>
         </InputBox>
         <ResultContainer>
-        <ResultText inStock={result}>{result ? 'In Stock' : 'Not In Stock'}</ResultText>
+        <ResultText inStock={result}>{result ? 'Varan finns i lager' : 'Inte i lager'}</ResultText>
         </ResultContainer>
         </InputContainer>
         </InputWrapperInventory>
