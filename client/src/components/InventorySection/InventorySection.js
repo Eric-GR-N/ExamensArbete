@@ -17,16 +17,18 @@ const InventorySection = () => {
     const [groceryList, setGroceryList] = useState([]);
     const [result, setResult] = useState();
 
+    //Fetches our grocery data on startup
     useEffect(()=>{
         getData();
      }, [])
 
+    //Re-renders data when groceryList changes
     useEffect(()=>{
         renderData();
         console.log('I RAN')
     },[groceryList])
 
-
+    //Fetches our data from the database
     const getData = async () =>{
         const resp = await Axios.get("http://localhost:4000/groceries")
         console.log(resp.data);
@@ -40,11 +42,13 @@ const InventorySection = () => {
 
 
     const addGrocery = ()=>{
-        Axios.post("http://localhost:4000/groceries", {
-            grocery: grocery,
-        }).then((response)=>{
-            getData();
-        })
+        if(grocery){
+            Axios.post("http://localhost:4000/groceries", {
+                grocery: grocery,
+            }).then((response)=>{
+                getData();
+            })
+        }
     }
 
     const handleGroceryInput = (e)=>{

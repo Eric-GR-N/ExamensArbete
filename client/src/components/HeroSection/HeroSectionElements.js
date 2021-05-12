@@ -16,6 +16,11 @@ justify-content: center;
 align-items: center;
 position: relative;
 flex-direction: column;
+
+@media only screen and (max-width: 830px) {
+    ${'' /* height: 100vh; */}
+}
+
 `
 
 export const InnerContainer = styled.div`

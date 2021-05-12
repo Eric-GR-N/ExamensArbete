@@ -23,6 +23,7 @@ const ToDoSection = () => {
        setData();
     }, [])
 
+    //Fetches our data from the database
     const setData = async () =>{
         const resp = await Axios.get("http://localhost:4000/todo")
         const newTaskList = resp.data.filter(obj=>{
@@ -47,6 +48,7 @@ const ToDoSection = () => {
         setTask(newTask);
     }
 
+    //Post our tasks to database
     const handleSubmit = ()=>{
         Axios.post("http://localhost:4000/tasks", {
             task: task,

@@ -13,9 +13,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 z-index: 100;
-${'' /* @media only screen and (max-width: 830px) {
+
+@media only screen and (max-width: 830px) {
     height: 100vh;
-}  */}
+}
+
 `
 
 export const HomeLogo = styled(AiFillHome)`
@@ -37,7 +39,8 @@ cursor: pointer;
 `
 
 export const MenuContainer = styled.ul`
-margin-right: 30px;
+${'' /* border: solid yellow 3px; */}
+margin-left: 40px;
 display: flex;
 justify-content: center;
 list-style: none;

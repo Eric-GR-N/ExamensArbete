@@ -1,10 +1,11 @@
 import React, {useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavBarContainer, Nav, Logo, MenuContainer, MenuItem, MenuLink, IoTMenu,  IoTList, IoTItem, IoTLink, AiFillHome, HomeLogo } from './NavBarElements';
+import { NavBarContainer, Logo, MenuContainer, MenuItem, MenuLink, HomeLogo } from './NavBarElements';
 import Axios from 'axios';
 
+//
 const NavBar = () => {
-
+    //Function to clean up database
     const cleanUpDB = () =>{
         Axios.delete(`http://localhost:4000/deletedone/`).then((response)=>{
             

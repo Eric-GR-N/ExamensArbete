@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { HeroContainer, StyledSpanMeter, StyledSpan, Plant,
-Temp, HeroHeader, InnerContainer, InnerContainerTop, 
+import { HeroContainer, StyledSpanMeter, StyledSpan,
+Temp, InnerContainer, InnerContainerTop, 
 IoTBox, Overlay, IoTWrapper, IoTText, IoTTextWrapper,GetText, IoTInfoBox, Flower, BoxText, Drop } from './HeroSectionElements';
 import forest from '../../resources/forest2.jpg';
 import Axios from 'axios';
 import emailjs from 'emailjs-com';
-import {colors} from '../../colors';
 
 const HeroSection = () => {
     const [flowerValue, setFlowerValue] = useState();
@@ -16,10 +15,12 @@ const HeroSection = () => {
     const [tempMessage, setTempMessage] = useState();
     const [mailSent, setMailSent] = useState(false);
 
+    //Fetches our iot data when page loads
     useEffect(() => {
         getIotData();
     }, [])
 
+        //Sends an email if the flower value is too low
         const sendMail = (mailMessage) => {
         var templateParams = {
             message: mailMessage,
@@ -34,18 +35,21 @@ const HeroSection = () => {
           });
       }
 
+    //Messages to display for the iot boxes
     const IoTDoc = {
         plant: 'Till vänster kan vi se hur blomman mår. Visar mätaren rött så är det dags att vattna',
         temp: tempMessage,
         leakage: 'Till vänster kan vi se om vi har ett eventuellt läckage i lägenheten. Är droppen blå så är det en indikation på att det är vatten på golvet'
     }
 
+    //Closes the IoT box when not active 
     useEffect(()=>{
         if(type){
             setShowIoT(true);
         }
     }, [type])
 
+    //Function to get our sensor values from the database
     const getIotData = async () =>{
         const resp = await Axios.get("http://localhost:4000/iot");
         setFlowerValue((resp.data[0].flower/11));
@@ -75,6 +79,7 @@ const HeroSection = () => {
         setShowIoT(false);
     }
 
+    //Displays the IoT Boxes
     const renderIoTFacts = ()=>{
         if(type === 'plant'){
             return(
@@ -122,6 +127,7 @@ const HeroSection = () => {
 
     }
 
+    //Open/Close the IoT Menues
     const handleIoTMenu = (e)=>{
         getIotData();
         setType(e.target.innerText);

@@ -19,7 +19,7 @@ const db = mysql.createConnection({
     database: "homepage"
   })
 
-
+//API for post requests tasks
   app.post("/tasks", (req, res) =>{
     const task = req.body.task;
     const sqlInsertTask = 'INSERT INTO todo (task) VALUES (?)';
@@ -37,6 +37,7 @@ const db = mysql.createConnection({
       );
   })
 
+  //API for post requests groceries
   app.post("/groceries", (req, res) =>{
     const grocery = req.body.grocery;
     const sqlInsertTask = 'INSERT INTO inventory (grocery) VALUES (?)';
@@ -54,6 +55,7 @@ const db = mysql.createConnection({
       );
   })
 
+  //API for get request todo list
   app.get("/todo", (req, res) => {
     db.query("SELECT task, status FROM todo", (err, result) => {
       if (err) {
@@ -64,6 +66,7 @@ const db = mysql.createConnection({
     });
   });
 
+  //API for get requests groceries
   app.get("/groceries", (req, res) => {
     db.query("SELECT grocery FROM inventory", (err, result) => {
       if (err) {
@@ -74,6 +77,7 @@ const db = mysql.createConnection({
     });
   });
 
+  //API for get requests iot values
   app.get("/iot", (req, res) => {
     db.query("SELECT flower, temp, leak FROM iotvalues", (err, result) => {
       if (err) {
@@ -84,6 +88,7 @@ const db = mysql.createConnection({
     });
   });
 
+  //API for updating tasks
   app.put("/updatestatus", (req, res) => {
     const task = req.body.task;
     const status = 'DONE';
@@ -100,7 +105,8 @@ const db = mysql.createConnection({
       }
     );
   });
-
+  
+  //API to delete groceries
   app.delete("/deletegrocery/:id", (req, res) => {
     const grocery = req.params.id;
 
@@ -117,6 +123,7 @@ const db = mysql.createConnection({
     );
   });
 
+  //API to delete finished tasks
   app.delete('/deletedone', (req, res)=>{
     const status = 'DONE';
     db.query('DELETE from todo WHERE status = ?',
